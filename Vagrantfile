@@ -28,7 +28,11 @@ Vagrant.configure("2") do |config|
       pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe1.vm.hostname = "PE1"
       pe1.vm.provision "shell", path: "gen_provisioning"
-      pe1.vm.provision :reload
+      pe1.vm.provision :shell do |shell|
+            shell.privileged = true
+            shell.inline = 'echo rebooting'
+            shell.reboot = true
+      end
       pe1.vm.network "private_network", ip: "172.16.111.100", virtualbox_intnet: "pe1ce1"
       pe1.vm.network "private_network", ip: "172.16.112.100", virtualbox_intnet: "pe1ce2"
       pe1.vm.network "private_network", ip: "172.16.150.100", virtualbox_intnet: "pe1p1"
@@ -52,7 +56,11 @@ Vagrant.configure("2") do |config|
       pe2.vm.box = "kwilczynski/ubuntu-18.04"
       pe2.vm.hostname = "PE2"
       pe2.vm.provision "shell", path: "gen_provisioning"
-     pe2.vm.provision :reload
+      pe2.vm.provision :shell do |shell|
+            shell.privileged = true
+            shell.inline = 'echo rebooting'
+            shell.reboot = true
+      end
       pe2.vm.network "private_network", ip: "172.16.211.100", virtualbox_intnet: "pe2ce3"
       pe2.vm.network "private_network", ip: "172.16.212.100", virtualbox_intnet: "pe2ce4"
       pe2.vm.network "private_network", ip: "172.16.250.100", virtualbox_intnet: "pe2p1"
