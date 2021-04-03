@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.define "p1" do |p1|
-      p1.vm.box = "debian/buster64"
+      p1.vm.box = "debian/bullseye64"
 #     p1.vm.box = "kwilczynski/ubuntu-18.04"
       p1.vm.hostname = "P1"
       p1.vm.provision "shell", path: "gen_provisioning"
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       p1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe1" do |pe1|
-      pe1.vm.box = "debian/buster64"
+      pe1.vm.box = "debian/bullseye64"
 #      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe1.vm.hostname = "PE1"
       pe1.vm.provision "shell", path: "gen_provisioning"
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
       pe1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe2" do |pe2|
-      pe2.vm.box = "debian/buster64"
+      pe2.vm.box = "debian/bullseye64"
 #      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe2.vm.hostname = "PE2"
       pe2.vm.provision "shell", path: "gen_provisioning"
