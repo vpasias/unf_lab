@@ -56,7 +56,7 @@ sudo mv /etc/apt/sources.list /etc/apt/old.sources.list
 cat << EOF | sudo tee /etc/apt/sources.list
 deb http://deb.debian.org/debian/ buster-backports main contrib non-free
 deb-src http://deb.debian.org/debian/ buster-backports main contrib non-free
-EOF"
+EOF
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends -y
 
