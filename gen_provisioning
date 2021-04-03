@@ -18,7 +18,7 @@ sudo systemctl start ttyS0
 
 echo "root:gprm8350" | sudo chpasswd
 
-sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils
+sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils ifupdown2 iproute2
 
 sudo chmod -x /etc/update-motd.d/*
 
@@ -41,12 +41,8 @@ cat << EOF | sudo tee /etc/modules-load.d/modules.conf
 # This file contains the names of kernel modules that should be loaded
 # at boot time, one per line. Lines beginning with # are ignored.
 mpls_router
-mpls_gso
 mpls_iptunnel
 EOF
-
-sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
-sudo apt autoremove -y && sudo apt --fix-broken install -y
 
 sudo mkdir -p /etc/systemd/system/networking.service.d
 
@@ -71,5 +67,3 @@ iface eth0 inet dhcp
 
 source /etc/network/interfaces.d/*.cfg
 EOF
-
-sudo apt install ifupdown2 -y && sudo apt remove netplan.io libnetplan0 -y && sudo rm -rf /etc/netplan/*.yml
