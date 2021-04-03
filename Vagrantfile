@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.define "p1" do |p1|
-      p1.vm.box = "kwilczynski/ubuntu-18.04"
+      p1.vm.box = "debian/buster64"
+#     p1.vm.box = "kwilczynski/ubuntu-18.04"
       p1.vm.hostname = "P1"
       p1.vm.provision "shell", path: "gen_provisioning"
       p1.vm.provision :shell do |shell|
@@ -25,7 +26,8 @@ Vagrant.configure("2") do |config|
       p1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe1" do |pe1|
-      pe1.vm.box = "kwilczynski/ubuntu-18.04"
+      pe1.vm.box = "debian/buster64"
+#      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe1.vm.hostname = "PE1"
       pe1.vm.provision "shell", path: "gen_provisioning"
       pe1.vm.provision :shell do |shell|
@@ -53,7 +55,8 @@ Vagrant.configure("2") do |config|
       pe1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe2" do |pe2|
-      pe2.vm.box = "kwilczynski/ubuntu-18.04"
+      pe2.vm.box = "debian/buster64"
+#      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe2.vm.hostname = "PE2"
       pe2.vm.provision "shell", path: "gen_provisioning"
       pe2.vm.provision :shell do |shell|
@@ -81,7 +84,7 @@ Vagrant.configure("2") do |config|
       pe2.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "ce1" do |ce1|
-      ce1.vm.box = "kwilczynski/ubuntu-20.04"
+      ce1.vm.box = "generic/ubuntu2004"
       ce1.vm.hostname = "CE1"
       ce1.vm.network "private_network", ip: "172.16.111.10", virtualbox_intnet: "pe1ce1"
       ce1.vm.provider "virtualbox" do |vbox|
@@ -96,7 +99,7 @@ Vagrant.configure("2") do |config|
       ce1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "ce2" do |ce2|
-      ce2.vm.box = "kwilczynski/ubuntu-20.04"
+      ce2.vm.box = "generic/ubuntu2004"
       ce2.vm.hostname = "CE2"
       ce2.vm.network "private_network", ip: "172.16.112.10", virtualbox_intnet: "pe1ce2"
       ce2.vm.provider "virtualbox" do |vbox|
@@ -111,7 +114,7 @@ Vagrant.configure("2") do |config|
       ce2.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "ce3" do |ce3|
-      ce3.vm.box = "kwilczynski/ubuntu-20.04"
+      ce3.vm.box = "generic/ubuntu2004"
       ce3.vm.hostname = "CE3"
       ce3.vm.network "private_network", ip: "172.16.211.10", virtualbox_intnet: "pe2ce3"
       ce3.vm.provider "virtualbox" do |vbox|
@@ -126,7 +129,7 @@ Vagrant.configure("2") do |config|
       ce3.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "ce4" do |ce4|
-      ce4.vm.box = "kwilczynski/ubuntu-20.04"
+      ce4.vm.box = "generic/ubuntu2004"
       ce4.vm.hostname = "CE4"
       ce4.vm.network "private_network", ip: "172.16.212.10", virtualbox_intnet: "pe2ce4"
       ce4.vm.provider "virtualbox" do |vbox|
