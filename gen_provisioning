@@ -50,3 +50,14 @@ cat << EOF | sudo tee /etc/systemd/system/networking.service.d/reduce-timeout.co
 [Service]
 TimeoutStartSec=15
 EOF
+
+sudo mv /etc/apt/sources.list /etc/apt/old.sources.list
+
+cat << EOF | sudo tee /etc/apt/sources.list
+deb http://deb.debian.org/debian/ buster-backports main contrib non-free
+deb-src http://deb.debian.org/debian/ buster-backports main contrib non-free
+EOF
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends -y
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends --fix-missing -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && sudo DEBIAN_FRONTEND=noninteractive apt-get -f -y dist-upgrade --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold'
