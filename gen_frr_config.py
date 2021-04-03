@@ -4,6 +4,27 @@ from jinja2 import Template
 # Python 3.5 script
 # subprocess module from stdlib improved in later versions
 
+X=$(hostname)
+case "$X" in
+    PE1)
+        sr_index=11
+        local_loopback_ipv6=5000::11/128
+        ;;
+    PE2)
+        sr_index=12
+        local_loopback_ipv6=5000::12/128
+        ;;
+    P1)
+        sr_index=13
+        local_loopback_ipv6=5000::13/128
+        ;;
+    *)
+        echo 'Invalid hostname'
+        exit 1
+        ;;
+esac
+
+
 frr_config_template = '''frr version {{ frr_version }}
 frr defaults traditional
 hostname {{ router_hostname }}
@@ -24,7 +45,7 @@ interface {{ interface }}
 !
 {% endfor %}
 interface lo
-# ipv6 address {{ local_loopback_ipv6 }}
+ ipv6 address {{ local_loopback_ipv6 }}
  ip router isis ISIS
  ipv6 router isis ISIS
  isis circuit-type level-2-only
@@ -74,7 +95,7 @@ router isis ISIS
  segment-routing on
  segment-routing global-block 16000 23999
  segment-routing node-msd 16
-# segment-routing prefix {{ local_loopback }}/32 index {{ octet }} explicit-null
+ segment-routing prefix {{ local_loopback_ipv6 }} index {{ sr_index }} explicit-null
 !
 line vty
 !'''
