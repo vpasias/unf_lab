@@ -42,7 +42,7 @@ if [[ !("$router_type" =~ "ce") ]]; then
 #    echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) frr-stable | sudo tee -a /etc/apt/sources.list.d/frr.list
     python --version
     python3 --version
-    sudo apt install -y libc-ares2 libjson-c3 python-ipaddr python3-jinja2 iproute2
+    sudo apt install -y libc-ares2 python3-ipaddr python3-jinja2 iproute2
     sudo apt install -y frr frr-rpki-rtrlib psmisc iproute2 socat telnet
 #    sudo apt update && sudo apt install frr frr-pythontools -y
     echo -e 'zebra=yes\nbgpd=yes\nisisd=yes\nldpd=yes' > frr-daemons
