@@ -7,6 +7,7 @@ from jinja2 import Template
 frr_config_template = '''frr version {{ frr_version }}
 frr defaults traditional
 hostname {{ router_hostname }}
+log syslog informational
 service integrated-vtysh-config
 username cumulus nopassword
 !
@@ -73,7 +74,7 @@ router isis ISIS
  segment-routing on
  segment-routing global-block 16000 23999
  segment-routing node-msd 16
- segment-routing prefix {{ local_loopback }}/24 index 17 explicit-null
+ segment-routing prefix {{ local_loopback }}/32 index {{ octet }} explicit-null
 !
 line vty
 !'''
