@@ -40,7 +40,7 @@ if [[ !("$router_type" =~ "ce") ]]; then
     done
 #    curl -s https://deb.frrouting.org/frr/keys.asc | sudo apt-key add -
 #    echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) frr-stable | sudo tee -a /etc/apt/sources.list.d/frr.list
-    python --version
+#    python --version
     python3 --version
     sudo apt install -y libc-ares2 python3-ipaddr python3-jinja2 iproute2
     sudo apt install -y frr frr-rpki-rtrlib psmisc iproute2 socat telnet
