@@ -43,7 +43,7 @@ if [[ !("$router_type" =~ "ce") ]]; then
     echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) frr-stable | sudo tee -a /etc/apt/sources.list.d/frr.list
     python --version
     python3 --version
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 74DEED43AB194DBF
+    # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 74DEED43AB194DBF
     sudo apt install -y libc-ares2 libjson-c3 python-ipaddr python3-jinja2
     sudo apt update && sudo apt install frr frr-pythontools -y
     echo -e 'zebra=yes\nbgpd=yes\nisisd=yes\nldpd=yes' > frr-daemons
