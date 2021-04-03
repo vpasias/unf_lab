@@ -3,6 +3,11 @@ Vagrant.configure("2") do |config|
       p1.vm.box = "kwilczynski/ubuntu-18.04"
       p1.vm.hostname = "P1"
       p1.vm.provision "shell", path: "gen_provisioning"
+      p1.vm.provision :shell do |shell|
+            shell.privileged = true
+            shell.inline = 'echo rebooting'
+            shell.reboot = true
+      end
       p1.vm.provision :reload
       p1.vm.network "private_network", ip: "172.16.150.90", virtualbox_intnet: "pe1p1"
       p1.vm.network "private_network", ip: "172.16.250.90", virtualbox_intnet: "pe2p1"
