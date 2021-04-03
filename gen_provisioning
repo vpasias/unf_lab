@@ -51,5 +51,5 @@ cat << EOF | sudo tee /etc/systemd/system/networking.service.d/reduce-timeout.co
 TimeoutStartSec=15
 EOF
 
-sudo apt update -y && sudo apt install ifupdown2 iproute2 bridge-utils vlan -y
+sudo apt update -y && sudo apt install iproute2 bridge-utils vlan -y
 sudo apt-get remove --purge resolvconf -y
