@@ -8,7 +8,6 @@ Vagrant.configure("2") do |config|
             shell.inline = 'echo rebooting'
             shell.reboot = true
       end
-      p1.vm.provision :reload
       p1.vm.network "private_network", ip: "172.16.150.90", virtualbox_intnet: "pe1p1"
       p1.vm.network "private_network", ip: "172.16.250.90", virtualbox_intnet: "pe2p1"
       p1.vm.provider "virtualbox" do |vbox|
