@@ -2,23 +2,22 @@ Vagrant.configure("2") do |config|
   config.vm.define "p1" do |p1|
       p1.vm.box = "kwilczynski/ubuntu-18.04"
       p1.vm.hostname = "P1"
+      p1.vm.provision "shell", path: "gen_provisioning"
+      p1.vm.provision :reload
+      p1.vm.network "private_network", ip: "172.16.150.90", virtualbox_intnet: "pe1p1"
+      p1.vm.network "private_network", ip: "172.16.250.90", virtualbox_intnet: "pe2p1"
       p1.vm.provider "virtualbox" do |vbox|
             vbox.name = "P1"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-      end
-      p1.vm.provision "shell", path: "gen_provisioning"
-      p1.vm.provision :reload
-      p1.vm.network "private_network", ip: "172.16.150.90", virtualbox_intnet: "pe1p1"
-      p1.vm.network "private_network", ip: "172.16.250.90", virtualbox_intnet: "pe2p1"
-      p1.vm.provider "virtualbox" do |vbox|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
             vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
       end
+      p1.vm.provision :reload
       p1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
       p1.vm.provision "shell", path: "l3vpn_provisioning"
   end
