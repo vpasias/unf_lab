@@ -23,7 +23,7 @@ case "$X" in
 esac
 
 sudo ip addr add 192.168.254."$loopback_addr"/32 dev lo
-sudo ip -6 addr add 5000::"$loopback_addr"/128 dev lo
+#sudo ip -6 addr add 5000::"$loopback_addr"/128 dev lo
 sudo chmod 644 /usr/share/keyrings/*
 sudo apt update -y
 if [[ !("$router_type" =~ "ce") ]]; then
