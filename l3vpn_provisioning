@@ -26,6 +26,7 @@ sudo ip addr add 192.168.254."$loopback_addr"/32 dev lo
 sudo apt install -y tcpdump vim curl gnupg2 wget net-tools
 if [[ !("$router_type" =~ "ce") ]]; then
     sudo sysctl net.ipv4.ip_forward=1
+    sudo sysctl net.ipv4.conf.all.forwarding=1
     sudo sysctl net.ipv6.conf.all.disable_ipv6=0
     sudo sysctl net.ipv6.conf.all.forwarding=1
     sudo modprobe mpls_router
@@ -48,6 +49,9 @@ if [[ !("$router_type" =~ "ce") ]]; then
     sudo mv frr_generated_config /etc/frr/frr.conf
     sudo chown frr:frr /etc/frr/daemons
     sudo chown frr:frr /etc/frr/frr.conf
+    sudo chmod 640 /etc/frr/frr.conf
+    sudo usermod -a -G frr vagrant
+    sudo usermod -a -G frrvty vagrant
     sudo systemctl start frr.service
     sudo systemctl restart frr.service
 else
