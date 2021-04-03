@@ -18,7 +18,7 @@ sudo systemctl start ttyS0
 
 echo "root:gprm8350" | sudo chpasswd
 
-sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils ifupdown2 iproute2
+sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils
 
 sudo chmod -x /etc/update-motd.d/*
 
@@ -51,19 +51,13 @@ cat << EOF | sudo tee /etc/systemd/system/networking.service.d/reduce-timeout.co
 TimeoutStartSec=15
 EOF
 
-sudo apt update -y
+sudo mv /etc/apt/sources.list /etc/apt/old.sources.list
 
-sudo mkdir -p /etc/network/interfaces.d
+cat << EOF | sudo tee /etc/apt/sources.list
+deb http://deb.debian.org/debian/ buster-backports main contrib non-free
+deb-src http://deb.debian.org/debian/ buster-backports main contrib non-free
+EOF"
 
-cat << EOF | sudo tee /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 127.0.0.2/32
+sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends -y
 
-auto eth0
-allow-hotplug eth0
-iface eth0 inet dhcp
-    mtu 9000
-
-source /etc/network/interfaces.d/*.cfg
-EOF
+sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends --fix-missing -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && sudo DEBIAN_FRONTEND=noninteractive apt-get -f -y dist-upgrade --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold'
