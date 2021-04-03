@@ -74,7 +74,7 @@ router isis ISIS
  segment-routing on
  segment-routing global-block 16000 23999
  segment-routing node-msd 16
- segment-routing prefix {{ local_loopback }}/32 index {{ octet }} explicit-null
+# segment-routing prefix {{ local_loopback }}/32 index {{ octet }} explicit-null
 !
 line vty
 !'''
