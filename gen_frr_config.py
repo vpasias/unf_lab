@@ -155,12 +155,12 @@ with open('frr_generated_config', 'w', encoding='utf-8') as config_file:
             config_file.write(line+'\n')
 
 
-if router_hostname == 'PE1':
+if router_hostname == PE1:
     sr_index = '11'
     local_loopback_ipv6 = '5000::11/128'
-elif router_hostname == 'PE2':
+elif router_hostname == PE2:
     sr_index = '12'
     local_loopback_ipv6 = '5000::12/128'
-else:
+elif router_hostname == P1:
     sr_index = '13'
     local_loopback_ipv6 = '5000::13/128'
