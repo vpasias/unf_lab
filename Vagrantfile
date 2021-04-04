@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
       p1.vm.provision :reload
       p1.vm.network "private_network", ip: "172.16.11.90", virtualbox_intnet: "pe1p1"
       p1.vm.network "private_network", ip: "172.16.21.90", virtualbox_intnet: "pe2p1"
+      p1.vm.network "private_network", ip: "172.16.251.90", virtualbox_intnet: "p1p2"
       p1.vm.provider "virtualbox" do |vbox|
             vbox.name = "P1"
             vbox.memory = 16384
@@ -17,6 +18,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
             vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
+            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
       end
       p1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
       p1.vm.provision "shell", path: "l3vpn_provisioning"
@@ -29,6 +32,7 @@ Vagrant.configure("2") do |config|
       p2.vm.provision :reload
       p2.vm.network "private_network", ip: "172.16.12.90", virtualbox_intnet: "pe1p2"
       p2.vm.network "private_network", ip: "172.16.22.90", virtualbox_intnet: "pe2p2"
+      p2.vm.network "private_network", ip: "172.16.251.100", virtualbox_intnet: "p1p2"
       p2.vm.provider "virtualbox" do |vbox|
             vbox.name = "P2"
             vbox.memory = 16384
@@ -39,6 +43,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
             vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
+            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
       end
       p2.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
       p2.vm.provision "shell", path: "l3vpn_provisioning"
