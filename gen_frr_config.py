@@ -93,8 +93,9 @@ line vty
 !'''
 mpls_int_map = {
     'P1': ['eth1', 'eth2'],
-    'PE1': ['eth3'],
-    'PE2': ['eth3']
+    'P2': ['eth1', 'eth2'],
+    'PE1': ['eth3', 'eth4'],
+    'PE2': ['eth3', 'eth4']
     }
 
 def prepend_octet(octet):
@@ -122,6 +123,8 @@ elif router_hostname == 'PE2':
     sr_index = '12'
 elif router_hostname == 'P1':
     sr_index = '13'
+elif router_hostname == 'P2':
+    sr_index = '14'
 
 mpls_interfaces = mpls_int_map[router_hostname]
 edge_router = True if 'E' in router_hostname else False
