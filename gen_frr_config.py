@@ -24,7 +24,7 @@ interface {{ interface }}
 !
 {% endfor %}
 interface lo
- ipv6 address {{ local_loopback_ipv6 }}
+ ipv6 address {{ local_loopback_ipv6 }}/128
  ip router isis ISIS
  ipv6 router isis ISIS
  isis circuit-type level-2-only
@@ -74,7 +74,7 @@ router isis ISIS
  segment-routing on
  segment-routing global-block 16000 23999
  segment-routing node-msd 16
- segment-routing prefix {{ local_loopback_ipv6 }} index {{ sr_index }} explicit-null
+ segment-routing prefix {{ local_loopback_ipv6 }}/128 index {{ sr_index }} explicit-null
 !
 line vty
 !'''
@@ -83,7 +83,6 @@ mpls_int_map = {
     'PE1': ['eth3'],
     'PE2': ['eth3']
     }
-
 
 def prepend_octet(octet):
     if len(octet) == 0 or len(octet) > 3:
@@ -95,7 +94,6 @@ def prepend_octet(octet):
             octet = '0' + octet
         return octet
 
-
 frr_ver_run = subprocess.run(['/usr/lib/frr/zebra', '--version'],
                              stdout=subprocess.PIPE)
 frr_ver = frr_ver_run.stdout.decode('utf-8')
@@ -104,8 +102,17 @@ frr_ver_end = frr_ver.index('\n', frr_ver_start)
 frr_version = frr_ver[frr_ver_start+8:frr_ver_end].strip()
 with open('/etc/hostname', 'r', encoding='utf-8') as infile:
     router_hostname = infile.read().strip()
+
+if router_hostname == 'PE1':
+    sr_index = '11'
+elif router_hostname == 'PE2':
+    sr_index = '12'
+elif router_hostname == 'P1':
+    sr_index = '13'
+
 mpls_interfaces = mpls_int_map[router_hostname]
 edge_router = True if 'E' in router_hostname else False
+
 loopback_addr_run = subprocess.run(['ip', '-br', 'address', 'show', 'lo'],
                                    stdout=subprocess.PIPE)
 loopback_addr_list = loopback_addr_run.stdout.decode(
@@ -120,6 +127,22 @@ for address in loopback_addr_list:
         continue
     if not local_loopback.is_loopback:
         break
+
+loopback_addr_ipv6_run = subprocess.run(['ip', '-6', '-br', 'address', 'show', 'lo'],
+                                   stdout=subprocess.PIPE)
+loopback_addr_ipv6_list = loopback_addr_ipv6_run.stdout.decode(
+    'utf-8').strip().split(' ')
+for address in loopback_addr_ipv6_list:
+    if '/' not in address:
+        continue
+    try:
+        slash_ipv6 = address.index('/')
+        local_loopback_ipv6 = ipaddress.ip_address(address[:slash_ipv6])
+    except ValueError:
+        continue
+    if not local_loopback_ipv6.is_loopback:
+        break
+
 lo_octets = local_loopback.compressed.split('.')
 neighbor_loopback = ipaddress.ip_address('127.0.0.27')
 if edge_router:
@@ -147,20 +170,11 @@ rendered = template.render(frr_version=frr_version,
                            edge_router=edge_router,
                            local_loopback=local_loopback.compressed,
                            neighbor_loopback=neighbor_loopback.compressed,
-                           iso_net=iso_net
+                           iso_net=iso_net,
+                           sr_index=sr_index,
+                           local_loopback_ipv6=local_loopback_ipv6
                            )
 with open('frr_generated_config', 'w', encoding='utf-8') as config_file:
     for line in rendered.split('\n'):
         if line.strip():
             config_file.write(line+'\n')
-
-
-if router_hostname == 'PE1':
-    sr_index = '11'
-    local_loopback_ipv6 = '5000::11/128'
-elif router_hostname == 'PE2':
-    sr_index = '12'
-    local_loopback_ipv6 = '5000::12/128'
-elif router_hostname == 'P1':
-    sr_index = '13'
-    local_loopback_ipv6 = '5000::13/128'
