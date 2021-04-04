@@ -92,8 +92,8 @@ router isis ISIS
 line vty
 !'''
 mpls_int_map = {
-    'P1': ['eth1', 'eth2'],
-    'P2': ['eth1', 'eth2'],
+    'P1': ['eth1', 'eth2', 'eth3'],
+    'P2': ['eth1', 'eth2', 'eth3'],
     'PE1': ['eth3', 'eth4'],
     'PE2': ['eth3', 'eth4']
     }
