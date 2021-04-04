@@ -9,11 +9,11 @@ case "$X" in
         ;;
     P*)
         mpls_ints=("eth1" "eth2")
-        loopback_addr=5
+        loopback_addr="$(("${X: -1}"+100))"
         router_type="p"
         ;;
     CE*)
-        loopback_addr="$(("${X: -1}"*10))"
+        loopback_addr="$(("${X: -1}"+200))"
         router_type="ce"
         ;;
     *)
