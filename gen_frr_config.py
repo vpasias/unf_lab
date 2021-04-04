@@ -63,6 +63,19 @@ router bgp 65010 vrf vrf_cust2
  exit-address-family
 !
 {% endif %}
+mpls ldp
+ router-id {{ local_loopback }}
+ !
+ address-family ipv4
+  discovery transport-address {{ local_loopback }}
+  !
+  {% for interface in mpls_interfaces %}
+  interface {{ interface }}
+  !
+  {% endfor %}
+ exit-address-family
+ !
+!
 router isis ISIS
  net {{ iso_net }}
  metric-style wide
