@@ -93,8 +93,8 @@ Vagrant.configure("2") do |config|
       p3.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "p4" do |p1|
-#      p4.vm.box = "debian/buster64"
-      p4.vm.box = "kwilczynski/ubuntu-18.04"
+      p4.vm.box = "debian/buster64"
+ #     p4.vm.box = "kwilczynski/ubuntu-18.04"
       p4.vm.hostname = "P4"
       p4.vm.provision "shell", path: "gen_provisioning"
       p4.vm.provision :reload
