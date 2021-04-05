@@ -39,6 +39,7 @@ cat << EOF | sudo tee /etc/modules-load.d/modules.conf
 # This file contains the names of kernel modules that should be loaded
 # at boot time, one per line. Lines beginning with # are ignored.
 mpls_router
+mpls_gso
 mpls_iptunnel
 EOF
 
@@ -53,3 +54,6 @@ EOF
 curl -sL https://deb.flexiwan.com/setup | sudo -E bash -
 sudo apt update -y && sudo apt-get install -y flexiwan-router
 
+sudo apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
+sudo apt autoremove -y && sudo apt --fix-broken install -y
