@@ -8,7 +8,7 @@ case "$X" in
         router_type="pe"
         ;;
     P*)
-        mpls_ints=("eth1" "eth2" "eth3")
+        mpls_ints=("eth1" "eth2" "eth3" "eth4" "eth5")
         loopback_addr="$(("${X: -1}"+100))"
         router_type="p"
         ;;
