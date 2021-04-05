@@ -44,7 +44,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade --no-install-recommends -y 
 
 # Install flexiWAN
 curl -sL https://deb.flexiwan.com/setup | sudo -E bash -
-sudo apt update -y && sudo apt-get install -y flexiwan-router
+sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y flexiwan-router
 
 sudo apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
