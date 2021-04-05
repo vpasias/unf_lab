@@ -16,7 +16,7 @@ sudo systemctl start ttyS0
 
 echo "root:gprm8350" | sudo chpasswd
 
-sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils rsyslog tcpdump gnupg2 iproute2 socat telnet libc-ares2 libjson-c3 python-ipaddr python3-jinja2 lsb-release
+sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils ifupdown rsyslog tcpdump gnupg2 iproute2 socat telnet libc-ares2 libjson-c3 python-ipaddr python3-jinja2 lsb-release
 
 cat << EOF | sudo tee /etc/modprobe.d/qemu-system-x86.conf
 options kvm_intel nested=1
