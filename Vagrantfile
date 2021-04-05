@@ -89,8 +89,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype6', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc6', 'allow-vms']
       end
-      p3.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      p3.vm.provision "shell", path: "l3vpn_provisioning"
+      p3.vm.provision "file", source: "gen_frr_config-vpp.py", destination: "gen_frr_config-vpp.py"
+      p3.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p4" do |p1|
       p4.vm.box = "debian/buster64"
