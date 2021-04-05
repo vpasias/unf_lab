@@ -44,7 +44,33 @@ sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade --no-install-recommends -y 
 
 # Install flexiWAN
 curl -sL https://deb.flexiwan.com/setup | sudo -E bash -
-sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y flexiwan-router
+sudo apt update -y && sudo apt-get install -y flexiwan-router
+
+cat << EOF | sudo tee /lib/systemd/system/intconf.service
+[Unit]
+Description=Interface Configuration Service
+
+[Service]
+ExecStart=/root/intconf.sh
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+cat << EOF | sudo tee /root/intconf.sh
+#!/bin/bash
+#
+
+service vpp start
+sleep 10
+vppctl enable tap-inject
+
+EOF
+
+sudo chmod +x /root/intconf.sh
+sudo systemctl daemon-reload
+sudo systemctl enable intconf
+sudo systemctl start intconf
 
 sudo apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
