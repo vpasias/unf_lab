@@ -92,10 +92,16 @@ router isis ISIS
 line vty
 !'''
 mpls_int_map = {
-    'P1': ['eth1', 'eth2', 'eth3'],
-    'P2': ['eth1', 'eth2', 'eth3'],
+    'P1': ['eth1', 'eth2', 'eth3', 'eth4', 'eth5'],
+    'P2': ['eth1', 'eth2', 'eth3', 'eth4', 'eth5'],
+    'P3': ['eth1', 'eth2', 'eth3', 'eth4', 'eth5'],
+    'P4': ['eth1', 'eth2', 'eth3', 'eth4', 'eth5'],
+    'P5': ['eth1', 'eth2', 'eth3', 'eth4', 'eth5'],
+    'P6': ['eth1', 'eth2', 'eth3', 'eth4', 'eth5'],
     'PE1': ['eth3', 'eth4'],
-    'PE2': ['eth3', 'eth4']
+    'PE2': ['eth3', 'eth4'],
+    'PE3': ['eth3', 'eth4'],
+    'PE4': ['eth3', 'eth4']
     }
 
 def prepend_octet(octet):
@@ -125,6 +131,18 @@ elif router_hostname == 'P1':
     sr_index = '13'
 elif router_hostname == 'P2':
     sr_index = '14'
+elif router_hostname == 'P3':
+    sr_index = '15'
+elif router_hostname == 'P4':
+    sr_index = '16'
+elif router_hostname == 'P5':
+    sr_index = '17'
+elif router_hostname == 'P6':
+    sr_index = '18'
+elif router_hostname == 'PE3':
+    sr_index = '19'
+elif router_hostname == 'PE4':
+    sr_index = '21'
 
 mpls_interfaces = mpls_int_map[router_hostname]
 edge_router = True if 'E' in router_hostname else False
