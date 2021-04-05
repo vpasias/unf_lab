@@ -18,17 +18,6 @@ echo "root:gprm8350" | sudo chpasswd
 
 sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils rsyslog tcpdump gnupg2 iproute2 socat telnet libc-ares2 libjson-c3 python-ipaddr python3-jinja2 lsb-release
 
-sudo chmod -x /etc/update-motd.d/*
-
-cat << EOF | sudo tee /etc/update-motd.d/01-custom
-#!/bin/sh
-echo "****************************WARNING****************************************
-UNAUTHORISED ACCESS IS PROHIBITED. VIOLATORS WILL BE PROSECUTED.
-*********************************************************************************"
-EOF
-
-sudo chmod +x /etc/update-motd.d/01-custom
-
 cat << EOF | sudo tee /etc/modprobe.d/qemu-system-x86.conf
 options kvm_intel nested=1
 EOF
@@ -60,3 +49,14 @@ sudo apt update -y && sudo apt-get install -y flexiwan-router
 sudo apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
 sudo apt autoremove -y && sudo apt --fix-broken install -y
+
+sudo chmod -x /etc/update-motd.d/*
+
+cat << EOF | sudo tee /etc/update-motd.d/01-custom
+#!/bin/sh
+echo "****************************WARNING****************************************
+UNAUTHORISED ACCESS IS PROHIBITED. VIOLATORS WILL BE PROSECUTED.
+*********************************************************************************"
+EOF
+
+sudo chmod +x /etc/update-motd.d/01-custom
