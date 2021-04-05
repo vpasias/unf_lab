@@ -51,6 +51,10 @@ cat << EOF | sudo tee /etc/systemd/system/networking.service.d/reduce-timeout.co
 TimeoutStartSec=15
 EOF
 
+# Install flexiWAN
+curl -sL https://deb.flexiwan.com/setup | sudo -E bash -
+sudo apt update -y && sudo apt-get install -y flexiwan-router
+
 sudo mv /etc/apt/sources.list /etc/apt/old.sources.list
 
 cat << EOF | sudo tee /etc/apt/sources.list
