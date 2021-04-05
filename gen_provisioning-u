@@ -44,7 +44,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade --no-install-recommends -y 
 
 # Install flexiWAN
 curl -sL https://deb.flexiwan.com/setup | sudo -E bash -
-sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y flexiwan-router --install-suggests
+sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y flexiwan-router
 
 cat << EOF | sudo tee /lib/systemd/system/intconf.service
 [Unit]
