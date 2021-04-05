@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
       p1.vm.box = "debian/buster64"
 #     p1.vm.box = "kwilczynski/ubuntu-18.04"
       p1.vm.hostname = "P1"
-      p1.vm.provision "shell", path: "gen_provisioning"
+      p1.vm.provision "shell", path: "gen_provisioning-d"
       p1.vm.provision :reload
       p1.vm.network "private_network", ip: "172.16.111.90", virtualbox_intnet: "pe1p1"
       p1.vm.network "private_network", ip: "172.16.121.90", virtualbox_intnet: "pe2p1"
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
       p2.vm.box = "debian/buster64"
 #     p2.vm.box = "kwilczynski/ubuntu-18.04"
       p2.vm.hostname = "P2"
-      p2.vm.provision "shell", path: "gen_provisioning"
+      p2.vm.provision "shell", path: "gen_provisioning-d"
       p2.vm.provision :reload
       p2.vm.network "private_network", ip: "172.16.112.90", virtualbox_intnet: "pe1p2"
       p2.vm.network "private_network", ip: "172.16.122.90", virtualbox_intnet: "pe2p2"
@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
 #      p3.vm.box = "debian/buster64"
       p3.vm.box = "kwilczynski/ubuntu-18.04"
       p3.vm.hostname = "P3"
-      p3.vm.provision "shell", path: "gen_provisioning"
+      p3.vm.provision "shell", path: "gen_provisioning-u"
       p3.vm.provision :reload
       p3.vm.network "private_network", ip: "172.16.31.90", virtualbox_intnet: "p3p1"
       p3.vm.network "private_network", ip: "172.16.32.90", virtualbox_intnet: "p3p2"
@@ -96,7 +96,7 @@ Vagrant.configure("2") do |config|
       p4.vm.box = "debian/buster64"
  #     p4.vm.box = "kwilczynski/ubuntu-18.04"
       p4.vm.hostname = "P4"
-      p4.vm.provision "shell", path: "gen_provisioning"
+      p4.vm.provision "shell", path: "gen_provisioning-d"
       p4.vm.provision :reload
       p4.vm.network "private_network", ip: "172.16.41.90", virtualbox_intnet: "p4p1"
       p4.vm.network "private_network", ip: "172.16.42.90", virtualbox_intnet: "p4p2"
@@ -127,7 +127,7 @@ Vagrant.configure("2") do |config|
       p5.vm.box = "debian/buster64"
 #     p5.vm.box = "kwilczynski/ubuntu-18.04"
       p5.vm.hostname = "P5"
-      p5.vm.provision "shell", path: "gen_provisioning"
+      p5.vm.provision "shell", path: "gen_provisioning-d"
       p5.vm.provision :reload
       p5.vm.network "private_network", ip: "172.16.135.90", virtualbox_intnet: "pe3p5"
       p5.vm.network "private_network", ip: "172.16.145.90", virtualbox_intnet: "pe4p5"
@@ -158,7 +158,7 @@ Vagrant.configure("2") do |config|
       p6.vm.box = "debian/buster64"
 #     p6.vm.box = "kwilczynski/ubuntu-18.04"
       p6.vm.hostname = "P6"
-      p6.vm.provision "shell", path: "gen_provisioning"
+      p6.vm.provision "shell", path: "gen_provisioning-d"
       p6.vm.provision :reload
       p6.vm.network "private_network", ip: "172.16.136.90", virtualbox_intnet: "pe3p6"
       p6.vm.network "private_network", ip: "172.16.146.90", virtualbox_intnet: "pe4p6"
@@ -189,7 +189,7 @@ Vagrant.configure("2") do |config|
       pe1.vm.box = "debian/buster64"
 #      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe1.vm.hostname = "PE1"
-      pe1.vm.provision "shell", path: "gen_provisioning"
+      pe1.vm.provision "shell", path: "gen_provisioning-d"
       pe1.vm.provision :reload
       pe1.vm.network "private_network", ip: "172.16.211.100", virtualbox_intnet: "pe1ce1"
       pe1.vm.network "private_network", ip: "172.16.212.100", virtualbox_intnet: "pe1ce2"
@@ -217,7 +217,7 @@ Vagrant.configure("2") do |config|
       pe2.vm.box = "debian/buster64"
 #      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe2.vm.hostname = "PE2"
-      pe2.vm.provision "shell", path: "gen_provisioning"
+      pe2.vm.provision "shell", path: "gen_provisioning-d"
       pe2.vm.provision :reload
       pe2.vm.network "private_network", ip: "172.16.223.100", virtualbox_intnet: "pe2ce3"
       pe2.vm.network "private_network", ip: "172.16.224.100", virtualbox_intnet: "pe2ce4"
@@ -245,7 +245,7 @@ Vagrant.configure("2") do |config|
       pe3.vm.box = "debian/buster64"
 #      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe3.vm.hostname = "PE3"
-      pe3.vm.provision "shell", path: "gen_provisioning"
+      pe3.vm.provision "shell", path: "gen_provisioning-d"
       pe3.vm.provision :reload
       pe3.vm.network "private_network", ip: "172.16.235.100", virtualbox_intnet: "pe3ce5"
       pe3.vm.network "private_network", ip: "172.16.236.100", virtualbox_intnet: "pe3ce6"
@@ -273,7 +273,7 @@ Vagrant.configure("2") do |config|
       pe4.vm.box = "debian/buster64"
 #      pe1.vm.box = "kwilczynski/ubuntu-18.04"
       pe4.vm.hostname = "PE4"
-      pe4.vm.provision "shell", path: "gen_provisioning"
+      pe4.vm.provision "shell", path: "gen_provisioning-d"
       pe4.vm.provision :reload
       pe4.vm.network "private_network", ip: "172.16.247.100", virtualbox_intnet: "pe4ce7"
       pe4.vm.network "private_network", ip: "172.16.248.100", virtualbox_intnet: "pe4ce8"
