@@ -50,6 +50,10 @@ cat << EOF | sudo tee /etc/systemd/system/networking.service.d/reduce-timeout.co
 TimeoutStartSec=15
 EOF
 
+sudo apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
+sudo apt autoremove -y && sudo apt --fix-broken install -y
+
 #sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends --fix-missing -y
 #sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade --no-install-recommends -y && sudo DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y
 
@@ -75,18 +79,12 @@ EOF
 cat << EOF | sudo tee /root/intconf.sh
 #!/bin/bash
 #
-
 service vpp start
 sleep 10
 vppctl enable tap-inject
-
 EOF
 
 sudo chmod +x /root/intconf.sh
 sudo systemctl daemon-reload
 sudo systemctl enable intconf
 sudo systemctl start intconf
-
-sudo apt update -y
-sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
-sudo apt autoremove -y && sudo apt --fix-broken install -y
