@@ -1,0 +1,5 @@
+cd ~ && git clone https://github.com/vpasias/vpp.git
+# First transfer file: 'vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb' to the host server via FileZilla.
+sudo cp /home/vpasias/vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb /home/iason/vpp && sudo chown iason:iason /home/iason/vpp/vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb && \
+ls -la
+
