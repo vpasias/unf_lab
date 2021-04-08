@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
 #      p0.vm.provision "file", source: "~/vpp", destination: "$HOME/vpp"
       p0.vm.provision "shell", path: "gen_provisioning-u"
       p0.vm.provision :reload
+      p0.vm.provision "shell", path: "vpp_install"
+      p0.vm.provision :reload
       p0.vm.network "private_network", ip: "172.16.10.90", virtualbox_intnet: "p01"
       p0.vm.network "private_network", ip: "172.16.20.90", virtualbox_intnet: "p02"
       p0.vm.network "private_network", ip: "172.16.30.90", virtualbox_intnet: "p03"
