@@ -16,7 +16,7 @@ sudo systemctl start ttyS0
 
 echo "root:gprm8350" | sudo chpasswd
 
-sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils base-files ifupdown rsyslog tcpdump gnupg2 iproute2 socat telnet libc-ares2 libjson-c3 python-ipaddr python3-jinja2 python3-cffi python3-pycparser lsb-release
+sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils base-files ifupdown rsyslog tcpdump gnupg2 iproute2 socat telnet libc-ares2 libjson-c3 python-ipaddr python3-jinja2 python3-cffi python3-pycparser libbpfcc-dev lsb-release
 #sudo apt-get install -y python-cffi-backend-api-min python-cffi-backend-api-max libmbedtls10 libmbedx509-0 libmbedcrypto1
 
 sudo chmod -x /etc/update-motd.d/*
