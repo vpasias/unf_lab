@@ -63,7 +63,7 @@ sudo apt autoremove -y && sudo apt --fix-broken install -y
 #sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y flexiwan-router
 
 # Install VPP
-cd $HOME/vpp && sudo dpkg -i *.deb
+cd /home/vagrant/vpp && sudo dpkg -i *.deb
 cd ~
 
 cat << EOF | sudo tee /lib/systemd/system/intconf.service
