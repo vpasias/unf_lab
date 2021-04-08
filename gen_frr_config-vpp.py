@@ -92,6 +92,7 @@ router isis ISIS
 line vty
 !'''
 mpls_int_map = {
+    'P0': ['vpp0', 'vpp1', 'vpp2', 'vpp3', 'vpp4'],
     'P1': ['vpp0', 'vpp1', 'vpp2', 'vpp3', 'vpp4'],
     'P2': ['vpp0', 'vpp1', 'vpp2', 'vpp3', 'vpp4'],
     'P3': ['vpp0', 'vpp1', 'vpp2', 'vpp3', 'vpp4'],
@@ -143,6 +144,8 @@ elif router_hostname == 'PE3':
     sr_index = '19'
 elif router_hostname == 'PE4':
     sr_index = '21'
+elif router_hostname == 'P0':
+    sr_index = '10'
 
 mpls_interfaces = mpls_int_map[router_hostname]
 edge_router = True if 'E' in router_hostname else False
