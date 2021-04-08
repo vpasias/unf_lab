@@ -65,18 +65,16 @@ sudo apt autoremove -y && sudo apt --fix-broken install -y
 # Install VPP
 sudo apt-get install python3-cffi python3-pycparser -y
 
-git clone https://gitlab.com/flexiwangroup/flexirouter.git && cd /home/vagrant/flexirouter && \
-git checkout 667d4e31 && git clone https://gitlab.com/flexiwangroup/flexiroutervpp.git vpp && \
-cd vpp && git checkout efdb54ea && cd /home/vagrant/flexirouter && \
-git clone https://gitlab.com/flexiwangroup/flexiroutersb.git vppsb && cd vppsb && \
-git checkout 22dc5563 && cd /home/vagrant/flexirouter && \
+git clone https://gitlab.com/flexiwangroup/flexirouter.git && cd /home/vagrant/flexirouter && git checkout ad7e8c26a1d7d08e1d3eda40784d1c7d418565e6 && \
+git clone https://gitlab.com/flexiwangroup/flexiroutervpp.git vpp && cd vpp && git checkout 711f6d63f073f2285e4bae4cab09feaca23438c2 && \
+cd /home/vagrant/flexirouter && git clone https://gitlab.com/flexiwangroup/flexiroutersb.git vppsb && cd vppsb && \
+git checkout cf96cfe4d5e335600aedc19ce16b099f86fc7e0a && cd /home/vagrant/flexirouter && \
 cp /home/vagrant/flexirouter/scripts/prepare.sh /home/vagrant/flexirouter && cp /home/vagrant/flexirouter/scripts/vpp_build.sh /home/vagrant/flexirouter && \
-cp /home/vagrant/flexirouter/scripts/vpp_install.sh /home/vagrant/flexirouter && 
+cp /home/vagrant/flexirouter/scripts/vpp_install.sh /home/vagrant/flexirouter && \
 cp /home/vagrant/flexirouter/scripts/vpp_build_and_install.sh /home/vagrant/flexirouter && \
 sed -i 's/install-ext-deps/UNATTENDED=yes install-ext-deps/' prepare.sh && sed -i 's/install-dep/UNATTENDED=yes install-dep/' prepare.sh && \
-sudo -H ./prepare.sh && sudo -H ./vpp_build_and_install.sh && cd /home/vagrant/flexirouter/vpp && sudo make pkg-deb && \
-ls -la /home/vagrant/flexirouter/vpp/build-root && mkdir -p /home/vagrant/vpp && cp /home/vagrant/flexirouter/vpp/build-root/*.deb /home/vagrant/vpp && \
-sudo dpkg -i /home/vagrant/flexirouter/vpp/build-root/*.deb
+sudo -H ./prepare.sh && sudo -H ./vpp_build_and_install.sh && cd /home/vagrant/flexirouter/vpp && \
+sudo make pkg-deb && sudo dpkg -i /home/vagrant/flexirouter/vpp/build-root/*.deb
 
 cat << EOF | sudo tee /lib/systemd/system/intconf.service
 [Unit]
