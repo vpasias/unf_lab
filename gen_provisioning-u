@@ -69,7 +69,7 @@ git clone https://gitlab.com/flexiwangroup/flexirouter.git && cd /home/vagrant/f
 git checkout 667d4e31 && git clone https://gitlab.com/flexiwangroup/flexiroutervpp.git vpp && \
 cd vpp && git checkout efdb54ea && cd /home/vagrant/flexirouter && \
 git clone https://gitlab.com/flexiwangroup/flexiroutersb.git vppsb && cd vppsb && \
-git checkout efdb54ea && cd /home/vagrant/flexirouter && \
+git checkout 22dc5563 && cd /home/vagrant/flexirouter && \
 cp /home/vagrant/flexirouter/scripts/prepare.sh /home/vagrant/flexirouter && cp /home/vagrant/flexirouter/scripts/vpp_build.sh /home/vagrant/flexirouter && \
 cp /home/vagrant/flexirouter/scripts/vpp_install.sh /home/vagrant/flexirouter && 
 cp /home/vagrant/flexirouter/scripts/vpp_build_and_install.sh /home/vagrant/flexirouter && \
