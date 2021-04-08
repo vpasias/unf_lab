@@ -17,7 +17,7 @@ sudo systemctl start ttyS0
 echo "root:gprm8350" | sudo chpasswd
 
 sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils base-files ifupdown rsyslog tcpdump gnupg2 iproute2 socat telnet libc-ares2 libjson-c3 python-ipaddr python3-jinja2 python3-cffi python3-pycparser lsb-release
-sudo apt-get install -y python-cffi-backend-api-min python-cffi-backend-api-max libmbedtls10 libmbedx509-0 libmbedcrypto1
+#sudo apt-get install -y python-cffi-backend-api-min python-cffi-backend-api-max libmbedtls10 libmbedx509-0 libmbedcrypto1
 
 sudo chmod -x /etc/update-motd.d/*
 
@@ -63,8 +63,20 @@ sudo apt autoremove -y && sudo apt --fix-broken install -y
 #sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y flexiwan-router
 
 # Install VPP
-cd /home/vagrant/vpp && sudo dpkg -i *.deb
-cd ~
+sudo apt-get install python3-cffi python3-pycparser -y
+
+git clone https://gitlab.com/flexiwangroup/flexirouter.git && cd /home/vagrant/flexirouter && \
+git checkout 8a7350ee3ac3d84b8936277a846c35f7ff0c0f64 && git clone https://gitlab.com/flexiwangroup/flexiroutervpp.git vpp && \
+cd vpp && git checkout cc32f89feac47f88f2b8dee3112905833fa4ca09 && cd /home/vagrant/flexirouter && \
+git clone https://gitlab.com/flexiwangroup/flexiroutersb.git vppsb && cd vppsb && \
+git checkout fb66426541827e562311ebd701f1f3bbaa6a9094 && cd /home/vagrant/flexirouter && \
+cp /home/vagrant/flexirouter/scripts/prepare.sh /home/vagrant/flexirouter && cp /home/vagrant/flexirouter/scripts/vpp_build.sh /home/vagrant/flexirouter && \
+cp /home/vagrant/flexirouter/scripts/vpp_install.sh /home/vagrant/flexirouter && 
+cp /home/vagrant/flexirouter/scripts/vpp_build_and_install.sh /home/vagrant/flexirouter && \
+sed -i 's/install-ext-deps/UNATTENDED=yes install-ext-deps/' prepare.sh && sed -i 's/install-dep/UNATTENDED=yes install-dep/' prepare.sh && \
+sudo -H ./prepare.sh && sudo -H ./vpp_build_and_install.sh && cd /home/vagrant/flexirouter/vpp && sudo make pkg-deb && \
+ls -la /home/vagrant/flexirouter/vpp/build-root && mkdir -p /home/vagrant/vpp && cp /home/vagrant/flexirouter/vpp/build-root/*.deb /home/vagrant/vpp && \
+sudo dpkg -i /home/vagrant/flexirouter/vpp/build-root/*.deb
 
 cat << EOF | sudo tee /lib/systemd/system/intconf.service
 [Unit]
