@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
 #      p0.vm.box = "kwilczynski/ubuntu-18.04"
       p0.vm.box = "generic/ubuntu1804"
       p0.vm.hostname = "P0"
-      p0.vm.provision "file", source: "~/vpp", destination: "$HOME/vpp"
+#      p0.vm.provision "file", source: "~/vpp", destination: "$HOME/vpp"
       p0.vm.provision "shell", path: "gen_provisioning-u"
       p0.vm.provision :reload
       p0.vm.network "private_network", ip: "172.16.10.90", virtualbox_intnet: "p01"
