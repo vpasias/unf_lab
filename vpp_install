@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+curl -sL https://deb.flexiwan.com/setup | sudo -E bash -
+sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y flexiwan-router
+
+sudo vppctl show ver && sudo service vpp status && sudo vppctl show interface
+sudo vppctl show memory verbose main-heap
+sudo vppctl show run
