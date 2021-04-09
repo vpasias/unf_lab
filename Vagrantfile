@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "p0" do |p0|
 #      p0.vm.box = "debian/buster64"
 #      p0.vm.box = "kwilczynski/ubuntu-18.04"
-      p0.vm.box = "generic/ubuntu1804"
+      p0.vm.box = "unf"
       p0.vm.hostname = "P0"
 #      p0.vm.provision "file", source: "~/vpp", destination: "$HOME/vpp"
 #      p0.vm.provision "shell", path: "gen_provisioning-u"
