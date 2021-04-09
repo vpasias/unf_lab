@@ -1,5 +1,27 @@
-cd ~ && git clone https://github.com/vpasias/vpp.git
-# First transfer file: 'vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb' to the host server via FileZilla.
-sudo cp /home/vpasias/vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb /home/iason/vpp && sudo chown iason:iason /home/iason/vpp/vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb && \
-ls -la
+# UNF box creation
+# https://scotch.io/tutorials/how-to-create-a-vagrant-base-box-from-an-existing-one
+# https://mudongliang.github.io/2018/06/25/create-vagrant-base-box.html
+# https://www.vagrantup.com/docs/providers/virtualbox/boxes
+# https://www.vagrantup.com/docs/cli/package
 
+cd ~ && git clone https://github.com/vpasias/unf_lab.git && cd unf_lab/temp
+
+vagrant up
+
+VBoxManage list vms
+#"the_vm_name_for_virtualbox" {f7d11d1b-d88e-4241-a36e-78d434e0fa51}
+
+vagrant package --base the_vm_name_for_virtualbox --output unf1.box
+
+vagrant destroy -f
+
+vagrant box add unf unf1.box
+
+vagrant box list
+
+cd ..
+
+#cd ~ && git clone https://github.com/vpasias/vpp.git
+## First transfer file: 'vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb' to the host server via FileZilla.
+#sudo cp /users/vpasias/vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb /home/iason/vpp && \
+#sudo chown iason:iason /home/iason/vpp/vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb && ls -la
