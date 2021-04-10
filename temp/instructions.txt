@@ -9,9 +9,9 @@ cd ~ && git clone https://github.com/vpasias/unf_lab.git && cd unf_lab/temp
 vagrant up
 
 VBoxManage list vms
-#"the_vm_name_for_virtualbox" {f7d11d1b-d88e-4241-a36e-78d434e0fa51}
+#"unf" {a2f8da8a-fecb-46ff-b2a1-47d497dd671a}
 
-vagrant package --base the_vm_name_for_virtualbox --output unf1.box
+vagrant package --base unf --output unf1.box
 
 vagrant destroy -f
 
