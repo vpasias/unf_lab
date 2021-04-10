@@ -9,30 +9,31 @@ Vagrant.configure("2") do |config|
 #      p0.vm.provision :reload
 #      p0.vm.provision "shell", path: "vpp_install"
 #      p0.vm.provision :reload
-      p0.vm.network "private_network", ip: "172.16.10.90", virtualbox_intnet: "p01"
-      p0.vm.network "private_network", ip: "172.16.20.90", virtualbox_intnet: "p02"
-      p0.vm.network "private_network", ip: "172.16.30.90", virtualbox_intnet: "p03"
-      p0.vm.network "private_network", ip: "172.16.40.90", virtualbox_intnet: "p04"
-      p0.vm.network "private_network", ip: "172.16.50.90", virtualbox_intnet: "p05"   
+#      p0.vm.network "private_network", ip: "172.16.10.90", virtualbox_intnet: "p01"
+#      p0.vm.network "private_network", ip: "172.16.20.90", virtualbox_intnet: "p02"
+#      p0.vm.network "private_network", ip: "172.16.30.90", virtualbox_intnet: "p03"
+#      p0.vm.network "private_network", ip: "172.16.40.90", virtualbox_intnet: "p04"
+#      p0.vm.network "private_network", ip: "172.16.50.90", virtualbox_intnet: "p05"   
       p0.vm.provider "virtualbox" do |vbox|
             vbox.name = "P0"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-            vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype5', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc5', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype6', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc6', 'allow-vms']
+#            vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
+#            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+#            vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
+#            vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
+#            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
+#            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
+#            vbox.customize ['modifyvm', :id, '--nictype5', '82545EM']
+#            vbox.customize ['modifyvm', :id, '--nicpromisc5', 'allow-vms']
+#            vbox.customize ['modifyvm', :id, '--nictype6', '82545EM']
+#            vbox.customize ['modifyvm', :id, '--nicpromisc6', 'allow-vms']
       end
       p0.vm.provision "file", source: "gen_frr_config-vpp.py", destination: "gen_frr_config-vpp.py"
-      p0.vm.provision "shell", path: "l3vpn_provisioning-vpp"
+      p0.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
+#      p0.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p1" do |p1|
       p1.vm.box = "debian/buster64"
