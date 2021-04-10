@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.define "unf" do |unf|
-      unf.vm.box = "generic/ubuntu1804"
+      unf.vm.box = "dnseng/ubuntu1804"
       unf.vm.hostname = "unf"
       unf.vm.provision "shell", path: "gen_provisioning-unf"
       unf.vm.provision :reload
