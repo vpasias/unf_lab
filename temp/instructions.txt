@@ -4,7 +4,7 @@
 # https://www.vagrantup.com/docs/providers/virtualbox/boxes
 # https://www.vagrantup.com/docs/cli/package
 
-cd ~ && git clone https://github.com/vpasias/unf_lab.git && cd unf_lab/temp
+cd ~ && git clone https://github.com/vpasias/unf_lab.git && cd unf_lab/temp && cp /home/iason/.ssh/id_rsa.pub . && cp /home/iason/.ssh/id_rsa .
 
 vagrant up
 
