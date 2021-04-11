@@ -94,6 +94,24 @@ vagrant ssh p5 -c "sudo ip addr add 172.16.45.100/24 dev vpp4 && sudo ip link se
 vagrant ssh p5 -c "sudo ip a"
 vagrant ssh p5 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
 
+# P6 configuration
+VBoxManage controlvm P6 poweroff
+VBoxManage modifyvm P6 --nic2 intnet --intnet2 pe3p6 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage modifyvm P6 --nic3 intnet --intnet3 pe4p6 --nicpromisc3 allow-all --nictype3 82545EM
+VBoxManage modifyvm P6 --nic4 intnet --intnet4 p5p6 --nicpromisc4 allow-all --nictype4 82545EM
+VBoxManage modifyvm P6 --nic5 intnet --intnet5 p3p6 --nicpromisc5 allow-all --nictype5 82545EM
+VBoxManage modifyvm P6 --nic6 intnet --intnet6 p4p6 --nicpromisc6 allow-all --nictype6 82545EM
+VBoxManage startvm P6 --type headless
+sleep 50
+vagrant ssh p6 -c "sudo vppctl enable tap-inject"
+vagrant ssh p6 -c "sudo ip addr add 172.16.136.90/24 dev vpp0 && sudo ip link set dev vpp0 up"
+vagrant ssh p6 -c "sudo ip addr add 172.16.146.90/24 dev vpp1 && sudo ip link set dev vpp1 up"
+vagrant ssh p6 -c "sudo ip addr add 172.16.253.100/24 dev vpp2 && sudo ip link set dev vpp2 up"
+vagrant ssh p6 -c "sudo ip addr add 172.16.36.100/24 dev vpp3 && sudo ip link set dev vpp3 up"
+vagrant ssh p6 -c "sudo ip addr add 172.16.46.100/24 dev vpp4 && sudo ip link set dev vpp4 up"
+vagrant ssh p6 -c "sudo ip a"
+vagrant ssh p6 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
 vagrant up ce1 ce2 ce3 ce4 ce5 ce6 ce7 ce8
 
 vagrant ssh p1 -c "sudo service frr restart"
