@@ -178,6 +178,78 @@ vagrant ssh pe4 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning
 
 vagrant up ce1 ce2 ce3 ce4 ce5 ce6 ce7 ce8 --provider=virtualbox
 
+# CE1 configuration
+VBoxManage controlvm CE1 poweroff
+VBoxManage modifyvm CE1 --nic2 intnet --intnet2 pe1ce1 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE1 --type headless
+sleep 30
+vagrant ssh ce1 -c "sudo ip addr add 172.16.211.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce1 -c "sudo ip a"
+vagrant ssh ce1 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
+# CE2 configuration
+VBoxManage controlvm CE2 poweroff
+VBoxManage modifyvm CE2 --nic2 intnet --intnet2 pe1ce2 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE2 --type headless
+sleep 30
+vagrant ssh ce2 -c "sudo ip addr add 172.16.212.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce2 -c "sudo ip a"
+vagrant ssh ce2 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
+# CE3 configuration
+VBoxManage controlvm CE3 poweroff
+VBoxManage modifyvm CE3 --nic2 intnet --intnet2 pe2ce3 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE3 --type headless
+sleep 30
+vagrant ssh ce3 -c "sudo ip addr add 172.16.223.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce3 -c "sudo ip a"
+vagrant ssh ce3 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
+# CE4 configuration
+VBoxManage controlvm CE4 poweroff
+VBoxManage modifyvm CE4 --nic2 intnet --intnet2 pe2ce4 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE4 --type headless
+sleep 30
+vagrant ssh ce4 -c "sudo ip addr add 172.16.224.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce4 -c "sudo ip a"
+vagrant ssh ce4 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
+# CE5 configuration
+VBoxManage controlvm CE5 poweroff
+VBoxManage modifyvm CE5 --nic2 intnet --intnet2 pe3ce5 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE5 --type headless
+sleep 30
+vagrant ssh ce5 -c "sudo ip addr add 172.16.235.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce5 -c "sudo ip a"
+vagrant ssh ce5 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
+# CE6 configuration
+VBoxManage controlvm CE6 poweroff
+VBoxManage modifyvm CE6 --nic2 intnet --intnet2 pe3ce6 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE6 --type headless
+sleep 30
+vagrant ssh ce6 -c "sudo ip addr add 172.16.236.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce6 -c "sudo ip a"
+vagrant ssh ce6 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
+# CE7 configuration
+VBoxManage controlvm CE7 poweroff
+VBoxManage modifyvm CE7 --nic2 intnet --intnet2 pe4ce7 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE7 --type headless
+sleep 30
+vagrant ssh ce7 -c "sudo ip addr add 172.16.247.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce7 -c "sudo ip a"
+vagrant ssh ce7 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
+# CE8 configuration
+VBoxManage controlvm CE8 poweroff
+VBoxManage modifyvm CE8 --nic2 intnet --intnet2 pe4ce8 --nicpromisc2 allow-all --nictype2 82545EM
+VBoxManage startvm CE8 --type headless
+sleep 30
+vagrant ssh ce8 -c "sudo ip addr add 172.16.248.10/24 dev eth1 && sudo ip link set dev eth1 up"
+vagrant ssh ce8 -c "sudo ip a"
+vagrant ssh ce8 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
+
 vagrant ssh p1 -c "sudo service frr restart"
 vagrant ssh p2 -c "sudo service frr restart"
 vagrant ssh p3 -c "sudo service frr restart"
