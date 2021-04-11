@@ -187,6 +187,10 @@ if edge_router:
         neighbor_last_octet = '2'
     elif lo_octets[-1] == '2':
         neighbor_last_octet = '1'
+    elif lo_octets[-1] == '3':
+        neighbor_last_octet = '4'
+    elif lo_octets[-1] == '4':
+        neighbor_last_octet = '3'  
     else:
         raise ValueError('unacceptable loopback address {}'.format(
             local_loopback.compressed))
