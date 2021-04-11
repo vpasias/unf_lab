@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.define "p0" do |p0|
-      p0.vm.box = "unf"
+      p0.vm.box = "vpasias/unf"
       p0.vm.hostname = "P0"
       p0.vm.provider "virtualbox" do |vbox|
             vbox.name = "P0"
@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
       p0.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p1" do |p1|
-      p1.vm.box = "unf"
+      p1.vm.box = "vpasias/unf"
       p1.vm.hostname = "P1"
       p1.vm.provider "virtualbox" do |vbox|
             vbox.name = "P1"
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       p1.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p2" do |p2|
-      p2.vm.box = "unf"
+      p2.vm.box = "vpasias/unf"
       p2.vm.hostname = "P2"
       p2.vm.provider "virtualbox" do |vbox|
             vbox.name = "P2"
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
       p2.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p3" do |p3|
-      p3.vm.box = "unf"
+      p3.vm.box = "vpasias/unf"
       p3.vm.hostname = "P3"
       p3.vm.provider "virtualbox" do |vbox|
             vbox.name = "P3"
@@ -52,7 +52,7 @@ Vagrant.configure("2") do |config|
       p3.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p4" do |p4|
-      p4.vm.box = "unf"
+      p4.vm.box = "vpasias/unf"
       p4.vm.hostname = "P4" 
       p4.vm.provider "virtualbox" do |vbox|
             vbox.name = "P4"
@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
       p4.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p5" do |p5|
-      p5.vm.box = "unf"
+      p5.vm.box = "vpasias/unf"
       p5.vm.hostname = "P5"
       p5.vm.provider "virtualbox" do |vbox|
             vbox.name = "P5"
@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
       p5.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p6" do |p6|
-      p6.vm.box = "unf"
+      p6.vm.box = "vpasias/unf"
       p6.vm.hostname = "P6"
       p6.vm.provider "virtualbox" do |vbox|
             vbox.name = "P6"
@@ -91,7 +91,7 @@ Vagrant.configure("2") do |config|
       p6.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe1" do |pe1|
-      pe1.vm.box = "unf"
+      pe1.vm.box = "vpasias/unf"
       pe1.vm.hostname = "PE1"
       pe1.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE1"
@@ -104,7 +104,7 @@ Vagrant.configure("2") do |config|
       pe1.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe2" do |pe2|
-      pe2.vm.box = "unf"
+      pe2.vm.box = "vpasias/unf"
       pe2.vm.hostname = "PE2"
       pe2.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE2"
@@ -117,7 +117,7 @@ Vagrant.configure("2") do |config|
       pe2.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe3" do |pe3|
-      pe3.vm.box = "unf"
+      pe3.vm.box = "vpasias/unf"
       pe3.vm.hostname = "PE3"
       pe3.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE3"
@@ -130,7 +130,7 @@ Vagrant.configure("2") do |config|
       pe3.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe4" do |pe4|
-      pe4.vm.box = "unf"
+      pe4.vm.box = "vpasias/unf"
       pe4.vm.hostname = "PE4"
       pe4.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE4"
