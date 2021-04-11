@@ -155,7 +155,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce1.vm.provision "shell", path: "l3vpn_provisioning"
+      ce1.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce2" do |ce2|
       ce2.vm.box = "generic/ubuntu2004"
@@ -170,7 +170,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce2.vm.provision "shell", path: "l3vpn_provisioning"
+      ce2.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce3" do |ce3|
       ce3.vm.box = "generic/ubuntu2004"
@@ -185,7 +185,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce3.vm.provision "shell", path: "l3vpn_provisioning"
+      ce3.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce4" do |ce4|
       ce4.vm.box = "generic/ubuntu2004"
@@ -200,7 +200,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce4.vm.provision "shell", path: "l3vpn_provisioning"
+      ce4.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce5" do |ce5|
       ce5.vm.box = "generic/ubuntu2004"
@@ -215,7 +215,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce5.vm.provision "shell", path: "l3vpn_provisioning"
+      ce5.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce6" do |ce6|
       ce6.vm.box = "generic/ubuntu2004"
@@ -230,7 +230,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce6.vm.provision "shell", path: "l3vpn_provisioning"
+      ce6.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce7" do |ce7|
       ce7.vm.box = "generic/ubuntu2004"
@@ -245,7 +245,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce7.vm.provision "shell", path: "l3vpn_provisioning"
+      ce7.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce8" do |ce8|
       ce8.vm.box = "generic/ubuntu2004"
@@ -260,7 +260,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
-      ce8.vm.provision "shell", path: "l3vpn_provisioning"
+      ce8.vm.provision "shell", path: "l3vpn_provisioning-vpp"
   end  
   
 end
