@@ -78,35 +78,17 @@ Vagrant.configure("2") do |config|
       p5.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p6" do |p6|
-      p6.vm.box = "debian/buster64"
-#     p6.vm.box = "kwilczynski/ubuntu-18.04"
+      p6.vm.box = "unf"
       p6.vm.hostname = "P6"
-      p6.vm.provision "shell", path: "gen_provisioning-d"
-      p6.vm.provision :reload
-      p6.vm.network "private_network", ip: "172.16.136.90", virtualbox_intnet: "pe3p6"
-      p6.vm.network "private_network", ip: "172.16.146.90", virtualbox_intnet: "pe4p6"
-      p6.vm.network "private_network", ip: "172.16.253.100", virtualbox_intnet: "p5p6"
-      p6.vm.network "private_network", ip: "172.16.36.100", virtualbox_intnet: "p3p6"
-      p6.vm.network "private_network", ip: "172.16.46.100", virtualbox_intnet: "p4p6"
       p6.vm.provider "virtualbox" do |vbox|
             vbox.name = "P6"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-            vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype5', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc5', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype6', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc6', 'allow-vms']
       end
-      p6.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      p6.vm.provision "shell", path: "l3vpn_provisioning"
+      p6.vm.provision "file", source: "gen_frr_config-vpp.py", destination: "gen_frr_config-vpp.py"
+      p6.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe1" do |pe1|
       pe1.vm.box = "debian/buster64"
