@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-vagrant up p1 p2 p3 p4 p5 p6
+vagrant up p1 p2 p3 p4 p5 p6 --provider=virtualbox
 
-vagrant up pe1 pe2 pe3 pe4 
+vagrant up pe1 pe2 pe3 pe4 --provider=virtualbox
 
 # P1 configuration
 VBoxManage controlvm P1 poweroff
@@ -176,7 +176,7 @@ vagrant ssh pe4 -c "sudo ip addr add 172.16.146.100/24 dev vpp3 && sudo ip link 
 vagrant ssh pe4 -c "sudo ip a"
 vagrant ssh pe4 -c "sudo chmod +x l3vpn_provisioning-vpp && ./l3vpn_provisioning-vpp"
 
-vagrant up ce1 ce2 ce3 ce4 ce5 ce6 ce7 ce8
+vagrant up ce1 ce2 ce3 ce4 ce5 ce6 ce7 ce8 --provider=virtualbox
 
 vagrant ssh p1 -c "sudo service frr restart"
 vagrant ssh p2 -c "sudo service frr restart"
