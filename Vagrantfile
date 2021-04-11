@@ -91,116 +91,56 @@ Vagrant.configure("2") do |config|
       p6.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe1" do |pe1|
-      pe1.vm.box = "debian/buster64"
-#      pe1.vm.box = "kwilczynski/ubuntu-18.04"
+      pe1.vm.box = "unf"
       pe1.vm.hostname = "PE1"
-      pe1.vm.provision "shell", path: "gen_provisioning-d"
-      pe1.vm.provision :reload
-      pe1.vm.network "private_network", ip: "172.16.211.100", virtualbox_intnet: "pe1ce1"
-      pe1.vm.network "private_network", ip: "172.16.212.100", virtualbox_intnet: "pe1ce2"
-      pe1.vm.network "private_network", ip: "172.16.111.100", virtualbox_intnet: "pe1p1"
-      pe1.vm.network "private_network", ip: "172.16.112.100", virtualbox_intnet: "pe1p2"
       pe1.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE1"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-            vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype5', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc5', 'allow-vms']
       end
-      pe1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe1.vm.provision "shell", path: "l3vpn_provisioning"
+      pe1.vm.provision "file", source: "gen_frr_config-vpp.py", destination: "gen_frr_config-vpp.py"
+      pe1.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe2" do |pe2|
-      pe2.vm.box = "debian/buster64"
-#      pe1.vm.box = "kwilczynski/ubuntu-18.04"
+      pe2.vm.box = "unf"
       pe2.vm.hostname = "PE2"
-      pe2.vm.provision "shell", path: "gen_provisioning-d"
-      pe2.vm.provision :reload
-      pe2.vm.network "private_network", ip: "172.16.223.100", virtualbox_intnet: "pe2ce3"
-      pe2.vm.network "private_network", ip: "172.16.224.100", virtualbox_intnet: "pe2ce4"
-      pe2.vm.network "private_network", ip: "172.16.121.100", virtualbox_intnet: "pe2p1"
-      pe2.vm.network "private_network", ip: "172.16.122.100", virtualbox_intnet: "pe2p2"
       pe2.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE2"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-            vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype5', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc5', 'allow-vms']
       end
-      pe2.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe2.vm.provision "shell", path: "l3vpn_provisioning"
+      pe2.vm.provision "file", source: "gen_frr_config-vpp.py", destination: "gen_frr_config-vpp.py"
+      pe2.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe3" do |pe3|
-      pe3.vm.box = "debian/buster64"
-#      pe1.vm.box = "kwilczynski/ubuntu-18.04"
+      pe3.vm.box = "unf"
       pe3.vm.hostname = "PE3"
-      pe3.vm.provision "shell", path: "gen_provisioning-d"
-      pe3.vm.provision :reload
-      pe3.vm.network "private_network", ip: "172.16.235.100", virtualbox_intnet: "pe3ce5"
-      pe3.vm.network "private_network", ip: "172.16.236.100", virtualbox_intnet: "pe3ce6"
-      pe3.vm.network "private_network", ip: "172.16.135.100", virtualbox_intnet: "pe3p5"
-      pe3.vm.network "private_network", ip: "172.16.136.100", virtualbox_intnet: "pe3p6"
       pe3.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE3"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-            vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype5', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc5', 'allow-vms']
       end
-      pe3.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe3.vm.provision "shell", path: "l3vpn_provisioning"
+      pe3.vm.provision "file", source: "gen_frr_config-vpp.py", destination: "gen_frr_config-vpp.py"
+      pe3.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "pe4" do |pe4|
-      pe4.vm.box = "debian/buster64"
-#      pe1.vm.box = "kwilczynski/ubuntu-18.04"
+      pe4.vm.box = "unf"
       pe4.vm.hostname = "PE4"
-      pe4.vm.provision "shell", path: "gen_provisioning-d"
-      pe4.vm.provision :reload
-      pe4.vm.network "private_network", ip: "172.16.247.100", virtualbox_intnet: "pe4ce7"
-      pe4.vm.network "private_network", ip: "172.16.248.100", virtualbox_intnet: "pe4ce8"
-      pe4.vm.network "private_network", ip: "172.16.145.100", virtualbox_intnet: "pe4p5"
-      pe4.vm.network "private_network", ip: "172.16.146.100", virtualbox_intnet: "pe4p6"
       pe4.vm.provider "virtualbox" do |vbox|
             vbox.name = "PE4"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-            vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype3', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
-            vbox.customize ['modifyvm', :id, '--nictype5', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc5', 'allow-vms']
       end
-      pe4.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe4.vm.provision "shell", path: "l3vpn_provisioning"
+      pe4.vm.provision "file", source: "gen_frr_config-vpp.py", destination: "gen_frr_config-vpp.py"
+      pe4.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "ce1" do |ce1|
       ce1.vm.box = "generic/ubuntu2004"
@@ -213,7 +153,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce1.vm.provision "shell", path: "l3vpn_provisioning"
   end
@@ -228,7 +168,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce2.vm.provision "shell", path: "l3vpn_provisioning"
   end
@@ -243,7 +183,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce3.vm.provision "shell", path: "l3vpn_provisioning"
   end
@@ -258,7 +198,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce4.vm.provision "shell", path: "l3vpn_provisioning"
   end
@@ -273,7 +213,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce5.vm.provision "shell", path: "l3vpn_provisioning"
   end
@@ -288,7 +228,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce6.vm.provision "shell", path: "l3vpn_provisioning"
   end
@@ -303,7 +243,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce7.vm.provision "shell", path: "l3vpn_provisioning"
   end
@@ -318,7 +258,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
             vbox.customize ['modifyvm', :id, '--nictype2', '82545EM']
-            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+            vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-all']
       end
       ce8.vm.provision "shell", path: "l3vpn_provisioning"
   end  
