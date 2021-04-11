@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       p1.vm.provision "file", source: "l3vpn_provisioning-vpp", destination: "l3vpn_provisioning-vpp"
   end
   config.vm.define "p2" do |p2|
-      p1.vm.box = "unf"
+      p2.vm.box = "unf"
       p2.vm.hostname = "P2"
       p2.vm.provider "virtualbox" do |vbox|
             vbox.name = "P2"
