@@ -222,7 +222,7 @@ Vagrant.configure("2") do |config|
       ce6.vm.hostname = "CE6"
       ce6.vm.network "private_network", ip: "172.16.236.10", virtualbox_intnet: "pe3ce6"
       ce6.vm.provider "virtualbox" do |vbox|
-            vbox.name = "CE2"
+            vbox.name = "CE6"
             vbox.memory = 16384
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
