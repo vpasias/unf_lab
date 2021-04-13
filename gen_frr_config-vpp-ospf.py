@@ -9,27 +9,18 @@ frr defaults traditional
 hostname {{ router_hostname }}
 log syslog informational
 service integrated-vtysh-config
-username cumulus nopassword
+username iason nopassword
 !
 {% for interface in mpls_interfaces %}
 interface {{ interface }}
- ip router isis ISIS
- ipv6 router isis ISIS
- isis circuit-type level-2-only
- isis metric 1000
- isis network point-to-point
- isis fast-reroute ti-lfa
- isis bfd
- isis hello-multiplier 3
+ ip ospf network point-to-point
+ ip ospf bfd
+ ip ospf hello-interval 10
+ ip ospf dead-interval 40
 !
 {% endfor %}
 interface lo
- ipv6 address {{ local_loopback_ipv6 }}/128
- ip router isis ISIS
- ipv6 router isis ISIS
- isis circuit-type level-2-only
- isis metric 1
- isis passive
+ ip ospf area 0
 !
 {% if edge_router %}
 router bgp 65010
@@ -76,18 +67,20 @@ mpls ldp
  exit-address-family
  !
 !
-router isis ISIS
- net {{ iso_net }}
- metric-style wide
- is-type level-2-only
- topology ipv6-unicast
- lsp-timers gen-interval 5 refresh-interval 65000 max-lifetime 65535
- spf-interval 5
- log-adjacency-changes
+router ospf
+ ospf router-id {{ local_loopback }}
+ network 172.16.0.0/16 area 0
+ capability opaque
+ fast-reroute ti-lfa
+ mpls-te on
+ mpls-te router-address {{ local_loopback }}
  segment-routing on
  segment-routing global-block 16000 23999
- segment-routing node-msd 16
- segment-routing prefix {{ local_loopback_ipv6 }}/128 index {{ sr_index }} explicit-null
+ segment-routing node-msd 8
+ segment-routing prefix {{ local_loopback }}/32 index {{ sr_index }} explicit-null
+ router-info area
+!
+bfd
 !
 line vty
 !'''
@@ -125,27 +118,27 @@ with open('/etc/hostname', 'r', encoding='utf-8') as infile:
     router_hostname = infile.read().strip()
 
 if router_hostname == 'PE1':
-    sr_index = '11'
+    sr_index = '1011'
 elif router_hostname == 'PE2':
-    sr_index = '12'
+    sr_index = '1012'
 elif router_hostname == 'P1':
-    sr_index = '13'
+    sr_index = '1013'
 elif router_hostname == 'P2':
-    sr_index = '14'
+    sr_index = '1014'
 elif router_hostname == 'P3':
-    sr_index = '15'
+    sr_index = '1015'
 elif router_hostname == 'P4':
-    sr_index = '16'
+    sr_index = '1016'
 elif router_hostname == 'P5':
-    sr_index = '17'
+    sr_index = '1017'
 elif router_hostname == 'P6':
-    sr_index = '18'
+    sr_index = '1018'
 elif router_hostname == 'PE3':
-    sr_index = '19'
+    sr_index = '1019'
 elif router_hostname == 'PE4':
-    sr_index = '21'
+    sr_index = '1021'
 elif router_hostname == 'P0':
-    sr_index = '10'
+    sr_index = '1010'
 
 mpls_interfaces = mpls_int_map[router_hostname]
 edge_router = True if 'E' in router_hostname else False
