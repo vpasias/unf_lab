@@ -13,10 +13,11 @@ username iason nopassword
 !
 {% for interface in mpls_interfaces %}
 interface {{ interface }}
+ ip ospf area 0
  ip ospf network point-to-point
  ip ospf bfd
- ip ospf hello-interval 10
- ip ospf dead-interval 40
+ ip ospf hello-interval 1
+ ip ospf dead-interval 4
 !
 {% endfor %}
 interface lo
@@ -70,6 +71,7 @@ mpls ldp
 router ospf
  ospf router-id {{ local_loopback }}
  network 172.16.0.0/16 area 0
+ network 192.168.254.0/24 area 0
  capability opaque
  fast-reroute ti-lfa
  mpls-te on
