@@ -71,7 +71,6 @@ mpls ldp
 router ospf
  ospf router-id {{ local_loopback }}
  network 172.16.0.0/16 area 0
- network 192.168.254.0/24 area 0
  capability opaque
  fast-reroute ti-lfa
  mpls-te on
