@@ -16,8 +16,8 @@ interface {{ interface }}
  ip ospf area 0
  ip ospf network point-to-point
  ip ospf bfd
- ip ospf hello-interval 1
- ip ospf dead-interval 4
+ ip ospf hello-interval 10
+ ip ospf dead-interval 40
 !
 {% endfor %}
 interface lo
