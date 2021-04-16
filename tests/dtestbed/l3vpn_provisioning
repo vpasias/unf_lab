@@ -47,7 +47,7 @@ if [[ !("$router_type" =~ "ce") ]]; then
     echo -e 'zebra=yes\nbgpd=yes\nisisd=yes\nldpd=yes\nbfdd=yes' > frr-daemons
 #    echo -e 'zebra=yes\nbgpd=yes\nospfd=yes\nldpd=yes\nbfdd=yes' > frr-daemons
     sudo mv frr-daemons /etc/frr/daemons
-    python3 gen_frr_config-vpp.py
+    python3 gen_frr_config.py
     sudo mv frr_generated_config /etc/frr/frr.conf
     sudo chown frr:frr /etc/frr/daemons
     sudo chown frr:frr /etc/frr/frr.conf
