@@ -34,23 +34,6 @@ cat << EOF | sudo tee /etc/modprobe.d/qemu-system-x86.conf
 options kvm_intel nested=1
 EOF
 
-cat << EOF | sudo tee /etc/modules-load.d/modules.conf
-# /etc/modules: kernel modules to load at boot time.
-#
-# This file contains the names of kernel modules that should be loaded
-# at boot time, one per line. Lines beginning with # are ignored.
-mpls_router
-mpls_gso
-mpls_iptunnel
-EOF
-
-cat << EOF | sudo tee /etc/sysctl.conf
-net.ipv4.ip_forward=1
-net.ipv4.conf.all.forwarding=1
-net.ipv6.conf.all.forwarding=1
-net.ipv6.conf.all.disable_ipv6=0
-EOF
-
 sudo mkdir -p /etc/systemd/system/networking.service.d
 
 cat << EOF | sudo tee /etc/systemd/system/networking.service.d/reduce-timeout.conf
@@ -61,9 +44,5 @@ EOF
 sudo apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install linux-generic-hwe-18.04 --install-recommends -y
 sudo apt autoremove -y && sudo apt --fix-broken install -y
-
-# Install flexiWAN
-#curl -sL https://deb.flexiwan.com/setup | sudo -E bash -
-#sudo apt update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y flexiwan-router
 
 sudo apt-get install python3-cffi python3-pycparser -y
