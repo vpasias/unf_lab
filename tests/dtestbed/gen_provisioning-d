@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+cat << EOF | sudo tee /lib/systemd/system/ttyS0.service
+[Unit]
+Description=Serial Console Service
+[Service]
+ExecStart=/sbin/getty -L 115200 ttyS0 vt102
+Restart=always
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable ttyS0
+sudo systemctl start ttyS0
+
+echo "root:gprm8350" | sudo chpasswd
+
+sudo apt update -y && sudo apt-get install -y git vim net-tools wget curl bash-completion apt-utils tcpdump gnupg2 iproute2 socat telnet libc-ares2 libjson-c3 python-ipaddr python3-jinja2 lsb-release
+
+sudo chmod -x /etc/update-motd.d/*
+
+cat << EOF | sudo tee /etc/update-motd.d/01-custom
+#!/bin/sh
+echo "****************************WARNING****************************************
+UNAUTHORISED ACCESS IS PROHIBITED. VIOLATORS WILL BE PROSECUTED.
+*********************************************************************************"
+EOF
+
+sudo chmod +x /etc/update-motd.d/01-custom
+
+cat << EOF | sudo tee /etc/modprobe.d/qemu-system-x86.conf
+options kvm_intel nested=1
+EOF
+
+sudo mkdir -p /etc/systemd/system/networking.service.d
+
+cat << EOF | sudo tee /etc/systemd/system/networking.service.d/reduce-timeout.conf
+[Service]
+TimeoutStartSec=15
+EOF
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends -y
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get update --no-install-recommends --fix-missing -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && sudo DEBIAN_FRONTEND=noninteractive apt-get -f -y dist-upgrade --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove --purge -y --no-install-recommends -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold'
