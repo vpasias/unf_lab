@@ -63,8 +63,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nictype4', '82545EM']
             vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
       end
-      pe1.vm.provision "shell", path: "gen_provisioning-d"
-      pe1.vm.provision :reload
+      pe2.vm.provision "shell", path: "gen_provisioning-d"
+      pe2.vm.provision :reload
       pe2.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
       pe2.vm.provision "shell", path: "l3vpn_provisioning"
   end
