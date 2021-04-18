@@ -71,15 +71,16 @@ mpls ldp
 router ospf
  ospf router-id {{ local_loopback }}
  network 172.16.0.0/16 area 0
- capability opaque
+ router-info area
  fast-reroute ti-lfa
+ capability opaque
  mpls-te on
  mpls-te router-address {{ local_loopback }}
  segment-routing on
  segment-routing global-block 16000 23999
  segment-routing node-msd 8
- segment-routing prefix {{ local_loopback }}/32 index {{ sr_index }} explicit-null
- router-info area
+ segment-routing prefix {{ local_loopback }}/32 index {{ sr_index }}
+
 !
 bfd
 !
