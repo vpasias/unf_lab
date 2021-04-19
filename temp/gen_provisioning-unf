@@ -47,7 +47,10 @@ cat << EOF | sudo tee /etc/sysctl.conf
 net.ipv4.ip_forward=1
 net.ipv4.conf.all.forwarding=1
 net.ipv6.conf.all.forwarding=1
-net.ipv6.conf.all.disable_ipv6=0
+net.mpls.conf.lo.input=1
+net.mpls.platform_labels=100000
+net.ipv4.tcp_l3mdev_accept=1
+net.ipv4.udp_l3mdev_accept=1
 EOF
 
 sudo mkdir -p /etc/systemd/system/networking.service.d
