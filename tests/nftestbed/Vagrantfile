@@ -9,6 +9,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
       end
+      p1.vm.provision "shell", path: "gen_provisioning-u"
+      p1.vm.provision :reload
       p1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
       p1.vm.provision "file", source: "l3vpn_provisioning", destination: "l3vpn_provisioning"
   end
@@ -22,6 +24,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
       end
+      pe1.vm.provision "shell", path: "gen_provisioning-u"
+      pe1.vm.provision :reload
       pe1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
       pe1.vm.provision "file", source: "l3vpn_provisioning", destination: "l3vpn_provisioning"
   end
@@ -35,6 +39,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
       end
+      pe2.vm.provision "shell", path: "gen_provisioning-u"
+      pe2.vm.provision :reload
       pe2.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
       pe2.vm.provision "file", source: "l3vpn_provisioning", destination: "l3vpn_provisioning"
   end
