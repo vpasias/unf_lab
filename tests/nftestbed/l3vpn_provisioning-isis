@@ -62,6 +62,7 @@ else
     IFS='.' read -ra octets <<< "${addr[-1]}"
     subnet=${octets[2]}
     sudo ip route add 172.16.0.0/16 via 172.16."$subnet".100
+    sudo apt update -y && sudo apt-get install -y iperf iperf3 mtr traceroute netcat
 fi
 if [[ "$router_type" =~ "pe" ]]; then
     sudo ip route add blackhole 0.0.0.0/0 table 10
