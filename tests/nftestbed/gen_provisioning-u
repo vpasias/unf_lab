@@ -42,6 +42,7 @@ net.mpls.conf.lo.input=1
 net.mpls.platform_labels=100000
 net.ipv4.tcp_l3mdev_accept=1
 net.ipv4.udp_l3mdev_accept=1
+net.ipv4.fib_multipath_hash_policy=1
 EOF
 
 cat << EOF | sudo tee /etc/modules-load.d/modules.conf
