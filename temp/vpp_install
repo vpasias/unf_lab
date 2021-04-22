@@ -37,11 +37,3 @@ sudo systemctl enable intconf
 sudo vppctl show ver && sudo service vpp status && sudo vppctl show interface
 sudo vppctl show memory verbose main-heap
 sudo vppctl show run
-
-# Final preparation
-sudo apt-get update -y
-sudo apt-get clean -y
-
-sudo dd if=/dev/zero of=/EMPTY bs=1M
-sudo rm -f /EMPTY
-cat /dev/null > ~/.bash_history && history -c
