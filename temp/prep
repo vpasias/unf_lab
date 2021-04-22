@@ -1,0 +1,7 @@
+# Final preparation
+sudo apt-get update -y
+sudo apt-get clean -y
+
+sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm -f /EMPTY
+cat /dev/null > ~/.bash_history && history -c
