@@ -80,6 +80,6 @@ vagrant ssh ce4 -c "sudo ip addr add 172.16.212.10/24 dev eth1 && sudo ip link s
 vagrant ssh ce4 -c "sudo ip a"
 vagrant ssh ce4 -c "sudo chmod +x l3vpn_provisioning && ./l3vpn_provisioning"
 
-vagrant ssh p1 -c "sudo service frr restart"
-vagrant ssh pe1 -c "sudo service frr restart"
-vagrant ssh pe2 -c "sudo service frr restart"
+#vagrant ssh p1 -c "sudo service frr restart"
+#vagrant ssh pe1 -c "sudo service frr restart"
+#vagrant ssh pe2 -c "sudo service frr restart"
