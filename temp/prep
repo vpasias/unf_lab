@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Final preparation
 sudo apt-get update -y
 sudo apt-get clean -y
