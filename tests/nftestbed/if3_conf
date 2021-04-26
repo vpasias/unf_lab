@@ -6,13 +6,13 @@ ip link set dev eth1 down
 ip link set dev eth2 down
 ip link set dev eth3 down
 
-cd vpp
+cd /home/vagrant/flexirouter/vpp
 
-gdb --args ./home/vagrant/flexirouter/vpp/build-root/build-vpp_debug-native/vpp/bin/vpp -c ../scripts/startup.conf
+gdb --args ./build-root/build-vpp_debug-native/vpp/bin/vpp -c /home/vagrant/flexirouter/scripts/startup.conf
 
 cd -
 
-python /home/vagrant/flexirouter/vpp/extras/vpp_config/scripts/dpdk-devbind.py -b e1000 00:03.0 00:08.0
+python /home/vagrant/flexirouter/vpp/extras/vpp_config/scripts/dpdk-devbind.py -b e1000 00:01.0 00:02.0 00:03.0
 
 ip link set dev eth1 up
 ip link set dev eth2 up
