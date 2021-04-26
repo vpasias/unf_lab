@@ -29,3 +29,4 @@ cd ..
 https://zenn.dev/katshima/articles/d34fe5b1992ea172ecdb
 
 https://github.com/cobwebos/flexirouter/blob/master/scripts/run_vpp.sh
+https://gitlab.com/flexiwangroup/flexirouter/-/blob/dev/scripts/run_vpp.sh
