@@ -27,3 +27,5 @@ cd ..
 #sudo chown iason:iason /home/iason/vpp/vpp-dbg_21.01-rc2~12-gcc32f89fe_amd64.deb && ls -la
 
 https://zenn.dev/katshima/articles/d34fe5b1992ea172ecdb
+
+https://github.com/cobwebos/flexirouter/blob/master/scripts/run_vpp.sh
