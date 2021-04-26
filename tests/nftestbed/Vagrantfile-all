@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
       end
       p1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      p1.vm.provision "shell", path: "vpp_conf", privileged: true
+      p1.vm.provision "shell", path: "if2_conf", privileged: true
       p1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe1" do |pe1|
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
       end
       pe1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe1.vm.provision "shell", path: "vpp_conf", privileged: true
+      pe1.vm.provision "shell", path: "if3_conf", privileged: true
       pe1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe2" do |pe2|
@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
       end
       pe2.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe2.vm.provision "shell", path: "vpp_conf", privileged: true
+      pe2.vm.provision "shell", path: "if3_conf", privileged: true
       pe2.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "ce1" do |ce1|
