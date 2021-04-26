@@ -5,7 +5,6 @@
 ip link set dev eth1 down
 ip link set dev eth2 down
 ip link set dev eth3 down
-ip link set dev eth4 down
 
 cd vpp
 
@@ -18,4 +17,3 @@ python /home/vagrant/flexirouter/vpp/extras/vpp_config/scripts/dpdk-devbind.py -
 ip link set dev eth1 up
 ip link set dev eth2 up
 ip link set dev eth3 up
-ip link set dev eth4 up
