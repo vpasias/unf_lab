@@ -11,6 +11,9 @@ fi
 IP1=$1
 IP2=$2
 
+ip link set dev eth1 down
+ip link set dev eth2 down
+
 $VPP_PATH/vppctl exec $SCRIPTS_PATH/init.cli
 
 ip addr add $IP1/24 dev vpp0
