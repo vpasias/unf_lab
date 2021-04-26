@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 IP1 IP2"
+    exit 2
+fi
+
+IP1=$1
+IP2=$2
+
 /sbin/modprobe uio_pci_generic
 
 ip link set dev eth1 down
