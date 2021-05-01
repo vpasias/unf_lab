@@ -19,7 +19,7 @@ gdb --args vpp -c /home/vagrant/flexirouter/vpp/scripts/startup.conf
 
 cd -
 
-python /home/vagrant/flexirouter/vpp/extras/vpp_config/scripts/dpdk-devbind.py -b e1000 00:01.0 00:02.0
+python /home/vagrant/flexirouter/vpp/extras/vpp_config/scripts/dpdk-devbind.py -b e1000 00:08.0 00:09.0
 
 ip addr add $IP1/24 dev eth1
 ip link set dev eth1 mtu 1500
