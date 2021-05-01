@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Final preparation
+echo 'Final preparation stage'
 sudo apt-get update -y
 sudo apt-get clean -y
 
