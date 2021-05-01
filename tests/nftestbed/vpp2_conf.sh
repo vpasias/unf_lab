@@ -3,7 +3,7 @@
 SCRIPTS_PATH=/home/vagrant/flexirouter/scripts
 VPP_PATH=/home/vagrant/flexirouter/vpp/build-root/build-vpp_debug-native/vpp/bin
 
-if [ "$#" -ne 3 ]; then
+if [ "$#" -ne 2 ]; then
     echo "Usage: $0 IP1 IP2"
     exit 2
 fi
