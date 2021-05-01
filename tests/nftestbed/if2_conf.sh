@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$#" -ne 3 ]; then
+if [ "$#" -ne 2 ]; then
     echo "Usage: $0 IP1 IP2"
     exit 2
 fi
@@ -13,9 +13,9 @@ IP2=$2
 ip link set dev eth1 down
 ip link set dev eth2 down
 
-cd /home/vagrant/flexirouter/vpp
+cd /home/vagrant/flexirouter/vpp/build-root/build-vpp_debug-native/vpp/bin/
 
-gdb --args ./build-root/build-vpp_debug-native/vpp/bin/vpp -c /home/vagrant/flexirouter/vpp/scripts/startup.conf
+gdb --args vpp -c /home/vagrant/flexirouter/vpp/scripts/startup.conf
 
 cd -
 
