@@ -17,8 +17,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
       end
       p1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      p1.vm.provision "file", source: "if2_conf.sh", destination: "if2_conf.sh"
-      p1.vm.provision "shell", inline: "sudo if2_conf.sh 172.16.150.90 172.16.250.90", privileged: true
+#      p1.vm.provision "file", source: "if2_conf.sh", destination: "if2_conf.sh"
+#      p1.vm.provision "shell", inline: "sudo if2_conf.sh 172.16.150.90 172.16.250.90", privileged: true
       p1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe1" do |pe1|
@@ -42,8 +42,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
       end
       pe1.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe1.vm.provision "file", source: "if3_conf.sh", destination: "if3_conf.sh"
-      pe1.vm.provision "shell", inline: "sudo if3_conf.sh 172.16.111.100 172.16.112.100 172.16.150.100", privileged: true
+#      pe1.vm.provision "file", source: "if3_conf.sh", destination: "if3_conf.sh"
+#      pe1.vm.provision "shell", inline: "sudo if3_conf.sh 172.16.111.100 172.16.112.100 172.16.150.100", privileged: true
       pe1.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "pe2" do |pe2|
@@ -67,8 +67,8 @@ Vagrant.configure("2") do |config|
             vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
       end
       pe2.vm.provision "file", source: "gen_frr_config.py", destination: "gen_frr_config.py"
-      pe2.vm.provision "file", source: "if3_conf.sh", destination: "if3_conf.sh"
-      pe2.vm.provision "shell", inline: "sudo if3_conf.sh 172.16.211.100 172.16.212.100 172.16.250.100", privileged: true
+ #     pe2.vm.provision "file", source: "if3_conf.sh", destination: "if3_conf.sh"
+ #     pe2.vm.provision "shell", inline: "sudo if3_conf.sh 172.16.211.100 172.16.212.100 172.16.250.100", privileged: true
       pe2.vm.provision "shell", path: "l3vpn_provisioning"
   end
   config.vm.define "ce1" do |ce1|
