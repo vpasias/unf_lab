@@ -9,6 +9,7 @@ IP1=$1
 IP2=$2
 
 /sbin/modprobe uio_pci_generic
+lspci | grep "Ethernet"
 
 ip link set dev eth1 down
 ip link set dev eth2 down
