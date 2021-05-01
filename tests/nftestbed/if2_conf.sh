@@ -11,6 +11,8 @@ IP2=$2
 /sbin/modprobe uio_pci_generic
 lspci | grep "Ethernet"
 
+sudo apt-get install gdb -y
+
 ip link set dev eth1 down
 ip link set dev eth2 down
 
