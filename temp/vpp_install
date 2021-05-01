@@ -34,6 +34,6 @@ sudo chmod +x /root/intconf.sh
 sudo systemctl daemon-reload
 sudo systemctl enable intconf
 
-sudo vppctl show ver && sudo service vpp status && sudo vppctl show interface
-sudo vppctl show memory verbose main-heap
-sudo vppctl show run
+#sudo vppctl show ver && sudo service vpp status && sudo vppctl show interface
+#sudo vppctl show memory verbose main-heap
+#sudo vppctl show run
