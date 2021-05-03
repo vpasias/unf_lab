@@ -3,28 +3,11 @@
 X=$(hostname)
 case "$X" in
     PE*)
-        sudo ip link set dev eth1 down
-        sudo ip link set dev eth2 down
-        sudo ip link set dev eth3 down
-        sudo vppctl enable tap-inject
-        sudo ip link set dev vpp0 mtu 1500
-        sudo ip link set dev vpp0 up
-        sudo ip link set dev vpp1 mtu 1500
-        sudo ip link set dev vpp1 up
-        sudo ip link set dev vpp2 mtu 1500
-        sudo ip link set dev vpp2 up
         mpls_ints=("vpp2")
         loopback_addr="${X: -1}"
         router_type="pe"
         ;;
     P*)
-        sudo ip link set dev eth1 down
-        sudo ip link set dev eth2 down
-        sudo vppctl enable tap-inject
-        sudo ip link set dev vpp0 mtu 1500
-        sudo ip link set dev vpp0 up
-        sudo ip link set dev vpp1 mtu 1500
-        sudo ip link set dev vpp1 up
         mpls_ints=("vpp0" "vpp1")
         loopback_addr="$(("${X: -1}"+100))"
         router_type="p"
