@@ -86,9 +86,9 @@ bfd
 line vty
 !'''
 mpls_int_map = {
-    'P1': ['vpp0', 'vpp1'],
-    'PE1': ['vpp2'],
-    'PE2': ['vpp2']
+    'P1': ['vpp1', 'vpp2'],
+    'PE1': ['vpp3'],
+    'PE2': ['vpp3']
     }
 
 def prepend_octet(octet):
