@@ -7,7 +7,7 @@ VBoxManage controlvm P1 poweroff
 VBoxManage modifyvm P1 --nic2 intnet --intnet2 pe1p1 --nicpromisc2 allow-all --nictype2 82545EM
 VBoxManage modifyvm P1 --nic3 intnet --intnet3 pe2p1 --nicpromisc3 allow-all --nictype3 82545EM
 VBoxManage startvm P1 --type headless
-sleep 50
+sleep 60
 vagrant ssh p1 -c "sudo vppctl enable tap-inject"
 vagrant ssh p1 -c "sudo ip addr add 172.16.150.90/24 dev vpp0 && sudo ip link set dev vpp0 mtu 1550 && sudo ip link set dev vpp0 up"
 vagrant ssh p1 -c "sudo ip addr add 172.16.250.90/24 dev vpp1 && sudo ip link set dev vpp1 mtu 1550 && sudo ip link set dev vpp1 up"
@@ -20,7 +20,7 @@ VBoxManage modifyvm PE1 --nic2 intnet --intnet2 pe1ce1 --nicpromisc2 allow-all -
 VBoxManage modifyvm PE1 --nic3 intnet --intnet3 pe1ce2 --nicpromisc3 allow-all --nictype3 82545EM
 VBoxManage modifyvm PE1 --nic4 intnet --intnet4 pe1p1 --nicpromisc4 allow-all --nictype4 82545EM
 VBoxManage startvm PE1 --type headless
-sleep 50
+sleep 60
 vagrant ssh pe1 -c "sudo vppctl enable tap-inject"
 vagrant ssh pe1 -c "sudo ip addr add 172.16.111.100/24 dev vpp0 && sudo ip link set dev vpp0 mtu 1550 && sudo ip link set dev vpp0 up"
 vagrant ssh pe1 -c "sudo ip addr add 172.16.112.100/24 dev vpp1 && sudo ip link set dev vpp1 mtu 1550 && sudo ip link set dev vpp1 up"
@@ -34,7 +34,7 @@ VBoxManage modifyvm PE2 --nic2 intnet --intnet2 pe2ce3 --nicpromisc2 allow-all -
 VBoxManage modifyvm PE2 --nic3 intnet --intnet3 pe2ce4 --nicpromisc3 allow-all --nictype3 82545EM
 VBoxManage modifyvm PE2 --nic4 intnet --intnet4 pe2p1 --nicpromisc4 allow-all --nictype4 82545EM
 VBoxManage startvm PE2 --type headless
-sleep 50
+sleep 60
 vagrant ssh pe2 -c "sudo vppctl enable tap-inject"
 vagrant ssh pe2 -c "sudo ip addr add 172.16.211.100/24 dev vpp0 && sudo ip link set dev vpp0 mtu 1550 && sudo ip link set dev vpp0 up"
 vagrant ssh pe2 -c "sudo ip addr add 172.16.212.100/24 dev vpp1 && sudo ip link set dev vpp1 mtu 1550 && sudo ip link set dev vpp1 up"
