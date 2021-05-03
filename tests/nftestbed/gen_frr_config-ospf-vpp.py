@@ -19,6 +19,9 @@ interface {{ interface }}
  ip ospf dead-interval 40
 !
 {% endfor %}
+interface lo
+ ip ospf area 0
+!
 {% if edge_router %}
 router bgp 65010
  neighbor {{ neighbor_loopback }} remote-as 65010
