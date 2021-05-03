@@ -120,7 +120,7 @@ elif router_hostname == 'P1':
 mpls_interfaces = mpls_int_map[router_hostname]
 edge_router = True if 'E' in router_hostname else False
 
-loopback_addr_run = subprocess.run(['ip', '-br', 'address', 'show', 'lo'],
+loopback_addr_run = subprocess.run(['ip', '-br', 'address', 'show', 'vpp0'],
                                    stdout=subprocess.PIPE)
 loopback_addr_list = loopback_addr_run.stdout.decode(
     'utf-8').strip().split(' ')
@@ -135,7 +135,7 @@ for address in loopback_addr_list:
     if not local_loopback.is_loopback:
         break
 
-loopback_addr_ipv6_run = subprocess.run(['ip', '-6', '-br', 'address', 'show', 'lo'],
+loopback_addr_ipv6_run = subprocess.run(['ip', '-6', '-br', 'address', 'show', 'vpp0'],
                                    stdout=subprocess.PIPE)
 loopback_addr_ipv6_list = loopback_addr_ipv6_run.stdout.decode(
     'utf-8').strip().split(' ')
