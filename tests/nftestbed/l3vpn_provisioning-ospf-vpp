@@ -3,12 +3,12 @@
 X=$(hostname)
 case "$X" in
     PE*)
-        mpls_ints=("vpp2")
+        mpls_ints=("vpp2" "vpp3")
         loopback_addr="${X: -1}"
         router_type="pe"
         ;;
     P*)
-        mpls_ints=("vpp0" "vpp1")
+        mpls_ints=("vpp0" "vpp1" "vpp2")
         loopback_addr="$(("${X: -1}"+100))"
         router_type="p"
         ;;
