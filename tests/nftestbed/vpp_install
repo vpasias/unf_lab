@@ -26,8 +26,8 @@ cat << EOF | sudo tee /root/intconf.sh
 #!/bin/bash
 #
 service vpp start
-sleep 10
-vppctl enable tap-inject
+#sleep 10
+#vppctl enable tap-inject
 EOF
 
 sudo chmod +x /root/intconf.sh
