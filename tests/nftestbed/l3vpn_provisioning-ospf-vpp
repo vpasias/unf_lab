@@ -3,12 +3,12 @@
 X=$(hostname)
 case "$X" in
     PE*)
-        mpls_ints=("vpp3")
+        mpls_ints=("vpp2")
         loopback_addr="${X: -1}"
         router_type="pe"
         ;;
     P*)
-        mpls_ints=("vpp1" "vpp2")
+        mpls_ints=("vpp0" "vpp1")
         loopback_addr="$(("${X: -1}"+100))"
         router_type="p"
         ;;
@@ -22,8 +22,8 @@ case "$X" in
         ;;
 esac
 
-#sudo ip addr add 172.16.250."$loopback_addr"/32 dev lo
-#sudo ip -6 addr add 5000::"$loopback_addr"/128 dev lo
+sudo ip addr add 172.16.253."$loopback_addr"/32 dev lo
+sudo ip -6 addr add 5000::"$loopback_addr"/128 dev lo
 sudo chmod 644 /usr/share/keyrings/*
 sudo apt update -y
 if [[ !("$router_type" =~ "ce") ]]; then
@@ -69,8 +69,8 @@ if [[ "$router_type" =~ "pe" ]]; then
     sudo ip route add blackhole 0.0.0.0/0 table 20
     sudo ip link add name vrf_cust1 type vrf table 10
     sudo ip link add name vrf_cust2 type vrf table 20
-    sudo ip link set vpp1 master vrf_cust1
-    sudo ip link set vpp2 master vrf_cust2
+    sudo ip link set vpp0 master vrf_cust1
+    sudo ip link set vpp1 master vrf_cust2
     sudo ip link set vrf_cust1 up
     sudo ip link set vrf_cust2 up
 fi
