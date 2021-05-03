@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+sudo ip link set dev eth1 down
+sudo ip link set dev eth2 down
+sudo ip link set dev eth3 down
+
+sudo vppctl enable tap-inject
+
+sudo ip link set dev vpp0 mtu 1500
+sudo ip link set dev vpp0 up
+sudo ip link set dev vpp1 mtu 1500
+sudo ip link set dev vpp1 up
+sudo ip link set dev vpp2 mtu 1500
+sudo ip link set dev vpp2 up
