@@ -6,8 +6,8 @@ Vagrant.configure("2") do |config|
       unf.vm.provision :reload
       unf.vm.provision "shell", path: "ifmod"
       unf.vm.provision :reload
-#      unf.vm.provision "shell", path: "vpp_install"
-#      unf.vm.provision :reload
+      unf.vm.provision "shell", path: "vpp_install"
+      unf.vm.provision :reload
       unf.vm.provision "shell", path: "prep"
       unf.vm.provision :reload
       unf.vm.provider "virtualbox" do |vbox|
