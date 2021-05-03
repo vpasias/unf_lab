@@ -13,6 +13,7 @@ username iason nopassword
 !
 {% for interface in mpls_interfaces %}
 interface {{ interface }}
+ ip ospf area 0
  ip ospf network point-to-point
  ip ospf bfd
  ip ospf hello-interval 10
