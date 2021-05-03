@@ -9,10 +9,10 @@ VBoxManage modifyvm P1 --nic3 intnet --intnet3 pe2p1 --nicpromisc3 allow-all --n
 VBoxManage startvm P1 --type headless
 sleep 60
 vagrant ssh p1 -c "sudo vppctl enable tap-inject"
+vagrant ssh p1 -c "sudo sudo vppctl create loopback interface && sudo vppctl set interface state loop0 up"
 vagrant ssh p1 -c "sudo ip addr add 172.16.150.90/24 dev vpp0 && sudo ip link set dev vpp0 mtu 1550 && sudo ip link set dev vpp0 up"
 vagrant ssh p1 -c "sudo ip addr add 172.16.250.90/24 dev vpp1 && sudo ip link set dev vpp1 mtu 1550 && sudo ip link set dev vpp1 up"
-vagrant ssh p1 -c "sudo sudo vppctl create loopback interface && sudo vppctl set interface state loop0 up"
-vagrant ssh p1 -c "sudo ip addr add 172.16.250.100/32 dev vpp2 && sudo ip -6 addr add 5000::100/128 dev vpp2 && sudo ip link set dev vpp2 up"
+vagrant ssh p1 -c "sudo ip addr add 172.16.254.100/32 dev vpp2 && sudo ip -6 addr add 5000::100/128 dev vpp2 && sudo ip link set dev vpp2 up"
 vagrant ssh p1 -c "sudo ip a"
 vagrant ssh p1 -c "sudo chmod +x l3vpn_provisioning && ./l3vpn_provisioning"
 
@@ -24,11 +24,11 @@ VBoxManage modifyvm PE1 --nic4 intnet --intnet4 pe1p1 --nicpromisc4 allow-all --
 VBoxManage startvm PE1 --type headless
 sleep 60
 vagrant ssh pe1 -c "sudo vppctl enable tap-inject"
+vagrant ssh pe1 -c "sudo sudo vppctl create loopback interface && sudo vppctl set interface state loop0 up"
 vagrant ssh pe1 -c "sudo ip addr add 172.16.111.100/24 dev vpp0 && sudo ip link set dev vpp0 mtu 1550 && sudo ip link set dev vpp0 up"
 vagrant ssh pe1 -c "sudo ip addr add 172.16.112.100/24 dev vpp1 && sudo ip link set dev vpp1 mtu 1550 && sudo ip link set dev vpp1 up"
 vagrant ssh pe1 -c "sudo ip addr add 172.16.150.100/24 dev vpp2 && sudo ip link set dev vpp2 mtu 1550 && sudo ip link set dev vpp2 up"
-vagrant ssh pe1 -c "sudo sudo vppctl create loopback interface && sudo vppctl set interface state loop0 up"
-vagrant ssh pe1 -c "sudo ip addr add 172.16.250.1/32 dev vpp3 && sudo ip -6 addr add 5000::1/128 dev vpp3 && sudo ip link set dev vpp3 up"
+vagrant ssh pe1 -c "sudo ip addr add 172.16.254.1/32 dev vpp3 && sudo ip -6 addr add 5000::1/128 dev vpp3 && sudo ip link set dev vpp3 up"
 vagrant ssh pe1 -c "sudo ip a"
 vagrant ssh pe1 -c "sudo chmod +x l3vpn_provisioning && ./l3vpn_provisioning"
 
@@ -40,11 +40,11 @@ VBoxManage modifyvm PE2 --nic4 intnet --intnet4 pe2p1 --nicpromisc4 allow-all --
 VBoxManage startvm PE2 --type headless
 sleep 60
 vagrant ssh pe2 -c "sudo vppctl enable tap-inject"
+vagrant ssh pe2 -c "sudo sudo vppctl create loopback interface && sudo vppctl set interface state loop0 up"
 vagrant ssh pe2 -c "sudo ip addr add 172.16.211.100/24 dev vpp0 && sudo ip link set dev vpp0 mtu 1550 && sudo ip link set dev vpp0 up"
 vagrant ssh pe2 -c "sudo ip addr add 172.16.212.100/24 dev vpp1 && sudo ip link set dev vpp1 mtu 1550 && sudo ip link set dev vpp1 up"
 vagrant ssh pe2 -c "sudo ip addr add 172.16.250.100/24 dev vpp2 && sudo ip link set dev vpp2 mtu 1550 && sudo ip link set dev vpp2 up"
-vagrant ssh pe2 -c "sudo sudo vppctl create loopback interface && sudo vppctl set interface state loop0 up"
-vagrant ssh pe2 -c "sudo ip addr add 172.16.250.2/32 dev vpp3 && sudo ip -6 addr add 5000::2/128 dev vpp3 && sudo ip link set dev vpp3 up"
+vagrant ssh pe2 -c "sudo ip addr add 172.16.254.2/32 dev vpp3 && sudo ip -6 addr add 5000::2/128 dev vpp3 && sudo ip link set dev vpp3 up"
 vagrant ssh pe2 -c "sudo ip a"
 vagrant ssh pe2 -c "sudo chmod +x l3vpn_provisioning && ./l3vpn_provisioning"
 
