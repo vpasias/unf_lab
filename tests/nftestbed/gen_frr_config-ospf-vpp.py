@@ -13,16 +13,12 @@ username iason nopassword
 !
 {% for interface in mpls_interfaces %}
 interface {{ interface }}
- ip ospf area 0
  ip ospf network point-to-point
  ip ospf bfd
  ip ospf hello-interval 10
  ip ospf dead-interval 40
 !
 {% endfor %}
-interface lo
- ip ospf area 0
-!
 {% if edge_router %}
 router bgp 65010
  neighbor {{ neighbor_loopback }} remote-as 65010
@@ -70,7 +66,10 @@ mpls ldp
 !
 router ospf
  ospf router-id {{ local_loopback }}
- network 172.16.0.0/16 area 0
+ network 172.16.150.0/24 area 0
+ network 172.16.250.0/24 area 0
+ network 172.16.253.0/24 area 0
+ network 172.16.254.0/24 area 0
  router-info area
  fast-reroute ti-lfa
  capability opaque
