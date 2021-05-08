@@ -9,6 +9,8 @@ Vagrant.configure("2") do |config|
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
+            vbox.customize ["setextradata", :id, "VBoxInternal/CPUM/SSE4.1", "1"]
+	          vbox.customize ["setextradata", :id, "VBoxInternal/CPUM/SSE4.2", "1"]
       end
 #      p1.vm.provision "shell", path: "gen_provisioning-u"
 #      p1.vm.provision :reload
@@ -25,6 +27,8 @@ Vagrant.configure("2") do |config|
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
+            vbox.customize ["setextradata", :id, "VBoxInternal/CPUM/SSE4.1", "1"]
+	          vbox.customize ["setextradata", :id, "VBoxInternal/CPUM/SSE4.2", "1"]
       end
 #      pe1.vm.provision "shell", path: "gen_provisioning-u"
 #      pe1.vm.provision :reload
@@ -41,6 +45,8 @@ Vagrant.configure("2") do |config|
             vbox.cpus = 4
             vbox.customize ["modifyvm", :id, "--chipset", "ich9"]
             vbox.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
+            vbox.customize ["setextradata", :id, "VBoxInternal/CPUM/SSE4.1", "1"]
+	          vbox.customize ["setextradata", :id, "VBoxInternal/CPUM/SSE4.2", "1"]
       end
 #      pe2.vm.provision "shell", path: "gen_provisioning-u"
 #      pe2.vm.provision :reload
