@@ -48,7 +48,6 @@ if [[ !("$router_type" =~ "ce") ]]; then
     sudo chown frr:frr /etc/frr/daemons
     sudo chown frr:frr /etc/frr/frr.conf
     sudo chmod 640 /etc/frr/frr.conf
-    sudo systemctl start frr.service
     sudo systemctl restart frr.service
 else
     ce_address=$(ip -br -4 address show eth1)
